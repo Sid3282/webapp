@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="icon" href="https://i.ibb.co/qMh3fNCQ/document.png" type="image/png">
+    <!-- Include pdf-lib and pdfjs-dist -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
 
 <body class="light-theme">
@@ -50,7 +54,7 @@
                     </ul>
                 </li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#tools">Tools</a></li>
                 <li>
                     <div class="theme-toggle-container">
                         <label class="theme-toggle" id="theme-toggle">
@@ -215,6 +219,42 @@
         </div>
     </section>
 
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <h2>Useful Tools</h2>
+            <div class="tools-grid">
+                <!-- PDF to Image Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf colorful-icon"></i>
+                    </div>
+                    <h3>PDF to Image Converter</h3>
+                    <p>Convert PDF files to images easily.</p>
+                    <input type="file" id="pdfInput" accept="application/pdf">
+                    <button id="convertPdfToImage">Convert to Image</button>
+                    <div id="pdfToImageResult" class="result"></div>
+                    <button id="downloadPdfToImage" class="download-btn" style="display: none;">Download Image</button>
+                    <div id="pdfToImageDownloadMessage" class="download-message"></div>
+                </div>
+
+                <!-- Image to PDF Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-image colorful-icon"></i>
+                    </div>
+                    <h3>Image to PDF Converter</h3>
+                    <p>Convert images to PDF files easily.</p>
+                    <input type="file" id="imageInput" accept="image/*" multiple>
+                    <button id="convertImageToPdf">Convert to PDF</button>
+                    <div id="imageToPdfResult" class="result"></div>
+                    <button id="downloadImageToPdf" class="download-btn" style="display: none;">Download PDF</button>
+                    <div id="imageToPdfDownloadMessage" class="download-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -244,25 +284,6 @@
                         <div id="result"></div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <h2>Customer Reviews</h2>
-            <div class="review-form">
-                <h3>Leave a Review</h3>
-                <form id="reviewForm">
-                    <input type="text" id="reviewName" placeholder="Your Name" required>
-                    <textarea id="reviewText" placeholder="Your Review" required></textarea>
-                    <button type="submit">Submit Review</button>
-                </form>
-            </div>
-            <div class="reviews-list">
-                <h3>What Our Customers Say</h3>
-                <div id="reviewsContainer"></div>
             </div>
         </div>
     </section>
