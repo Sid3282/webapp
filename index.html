@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DS INFO TECH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+</head>
+
+<body class="light-theme">
+    <!-- Loader Section -->
+    <div class="loader-container">
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32"></circle>
+            </svg>
+        </div>
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">DS INFO TECH</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#services">Products <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#busy21">Busy21 Software</a></li>
+                        <li><a href="#windows11">Windows 11</a></li>
+                        <li><a href="#msoffice">MS Office</a></li>
+                        <li><a href="#tallyerp9">Tally ERP 9</a></li>
+                        <li><a href="#chequewriter">Cheque Writer</a></li>
+                        <li><a href="#coming-soon">More Coming Soon</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li>
+                    <div class="theme-toggle-container">
+                        <label class="theme-toggle" id="theme-toggle">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="mode-text">Light Mode</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="clock-date">
+            <div id="greeting"></div> <!-- Greeting Message -->
+            <div id="clock"></div>
+            <div id="date"></div>
+        </div>
+        <ul class="bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="hero-text">
+            <h1>Welcome to DS INFO TECH</h1>
+            <p>Innovative Software Solutions for Busy People!</p>
+            <button onclick="scrollToContact()">Get in Touch</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <!-- Busy21 Software -->
+                <div class="product-card" id="busy21">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/x8YPrXQ7/busy-21-business-accounting-software.jpg" alt="Busy21 Software" class="product-image">
+                        <div class="qr-code" id="qr-busy21">
+                            <img src="https://i.ibb.co/b5cvVNV2/Whats-App-Image-2025-02-21-at-10-07-51-AM.jpg" alt="QR Code">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Busy21 Software</h3>
+                        <p>Manage your business effortlessly with Busy21 software. Choose the plan that suits you:</p>
+                        <select id="busy21-mode" class="mode-select" onchange="updatePrice('busy21')">
+                            <option value="3000">Basic - Rs 3000</option>
+                            <option value="4000">Standard - Rs 4000</option>
+                            <option value="5000">Enterprise - Rs 5000</option>
+                        </select>
+                        <p class="price" id="busy21-price">Price: Rs 3000</p>
+                        <button class="purchase-btn" onclick="toggleQR('qr-busy21')">Pay Now</button>
+                        <button class="screenshot-btn" id="screenshot-btn-busy21" onclick="sendScreenshot('busy21')">
+                            Click here to send Screenshot & AnyDesk ID, installation message - installation will be done with AnyDesk after payment receipt
+                        </button>
+                        <p class="thanks-message" id="thanks-busy21">Thanks for your payment!</p>
+                    </div>
+                </div>
+
+                <!-- Windows 11 -->
+                <div class="product-card" id="windows11">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/20kbHwMq/ne6ukkej06t71.png" alt="Windows 11" class="product-image">
+                        <div class="qr-code" id="qr-windows11">
+                            <img src="https://i.ibb.co/b5cvVNV2/Whats-App-Image-2025-02-21-at-10-07-51-AM.jpg" alt="QR Code">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Windows 11</h3>
+                        <p>Get the latest Windows 11 for a better user experience and enhanced performance.</p>
+                        <p class="price">Price: Rs 1500</p>
+                        <button class="purchase-btn" onclick="toggleQR('qr-windows11')">Pay Now</button>
+                        <button class="screenshot-btn" id="screenshot-btn-windows11" onclick="sendScreenshot('windows11')">
+                            Click here to send Screenshot & AnyDesk ID, installation message - installation will be done with AnyDesk after payment receipt
+                        </button>
+                        <p class="thanks-message" id="thanks-windows11">Thanks for your payment!</p>
+                    </div>
+                </div>
+
+                <!-- MS Office -->
+                <div class="product-card" id="msoffice">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/357prGBp/office-365-14.png" alt="MS Office" class="product-image">
+                        <div class="qr-code" id="qr-msoffice">
+                            <img src="https://i.ibb.co/b5cvVNV2/Whats-App-Image-2025-02-21-at-10-07-51-AM.jpg" alt="QR Code">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>MS Office</h3>
+                        <p>Enhance productivity with MS Office solutions tailored to your needs.</p>
+                        <p class="price">Price: Rs 1000</p>
+                        <button class="purchase-btn" onclick="toggleQR('qr-msoffice')">Pay Now</button>
+                        <button class="screenshot-btn" id="screenshot-btn-msoffice" onclick="sendScreenshot('msoffice')">
+                            Click here to send Screenshot & AnyDesk ID, installation message - installation will be done with AnyDesk after payment receipt
+                        </button>
+                        <p class="thanks-message" id="thanks-msoffice">Thanks for your payment!</p>
+                    </div>
+                </div>
+
+                <!-- Tally ERP 9 -->
+                <div class="product-card" id="tallyerp9">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/B532XSCX/tally-accounting-software.png" alt="Tally ERP 9" class="product-image">
+                        <div class="qr-code" id="qr-tallyerp9">
+                            <img src="https://i.ibb.co/b5cvVNV2/Whats-App-Image-2025-02-21-at-10-07-51-AM.jpg" alt="QR Code">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Tally ERP 9</h3>
+                        <p>Comprehensive accounting software for businesses.</p>
+                        <p class="price">Price: Rs 3000</p>
+                        <button class="purchase-btn" onclick="toggleQR('qr-tallyerp9')">Pay Now</button>
+                        <button class="screenshot-btn" id="screenshot-btn-tallyerp9" onclick="sendScreenshot('tallyerp9')">
+                            Click here to send Screenshot & AnyDesk ID, installation message - installation will be done with AnyDesk after payment receipt
+                        </button>
+                        <p class="thanks-message" id="thanks-tallyerp9">Thanks for your payment!</p>
+                    </div>
+                </div>
+
+                <!-- Cheque Writer -->
+                <div class="product-card" id="chequewriter">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/YFpsq54d/2c3aa42b1da2db6d92c8ce927ea4af5e.png" alt="Cheque Writer" class="product-image">
+                        <div class="qr-code" id="qr-chequewriter">
+                            <img src="https://i.ibb.co/b5cvVNV2/Whats-App-Image-2025-02-21-at-10-07-51-AM.jpg" alt="QR Code">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheque Writer</h3>
+                        <p>Easy-to-use software for printing cheques (supports all Nepali banks).</p>
+                        <p class="price">Price: Rs 2000</p>
+                        <button class="purchase-btn" onclick="toggleQR('qr-chequewriter')">Pay Now</button>
+                        <button class="screenshot-btn" id="screenshot-btn-chequewriter" onclick="sendScreenshot('chequewriter')">
+                            Click here to send Screenshot & AnyDesk ID, installation message - installation will be done with AnyDesk after payment receipt
+                        </button>
+                        <p class="thanks-message" id="thanks-chequewriter">Thanks for your payment!</p>
+                    </div>
+                </div>
+
+                <!-- More Products Coming Soon -->
+                <div class="product-card" id="coming-soon">
+                    <div class="product-image-wrapper">
+                        <img src="https://i.ibb.co/CKN94sHr/Red-and-White-Modern-Tech-Coming-Soon-Instagram-Post.png" alt="Coming Soon" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3>More Products Coming Soon</h3>
+                        <p>Stay tuned for exciting new software solutions!</p>
+                        <button class="purchase-btn" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>For more information or inquiries, reach out to us:</p>
+                    <ul>
+                        <li><strong>Address:</strong> Kathmandu, Nepal</li>
+                        <li><strong>WhatsApp:</strong> <a href="https://wa.me/9803282511">9803282511</a></li>
+                        <li>
+                            <strong>Email:</strong>
+                            <a href="mailto:sidbatala@gmail.com">
+                                <i class="fas fa-envelope"></i> sidbatala@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form method="POST" id="form">
+                        <input type="hidden" name="access_key" value="d2575a55-86d0-47cc-9a8f-29970efa6d84">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <button type="submit">Send Message</button>
+                        <div id="result"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div class="review-form">
+                <h3>Leave a Review</h3>
+                <form id="reviewForm">
+                    <input type="text" id="reviewName" placeholder="Your Name" required>
+                    <textarea id="reviewText" placeholder="Your Review" required></textarea>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+            <div class="reviews-list">
+                <h3>What Our Customers Say</h3>
+                <div id="reviewsContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DS INFO TECH | All Rights Reserved</p>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- Paper Plane Animation -->
+    <div id="paper-plane" class="paper-plane">
+        <i class="fas fa-paper-plane"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
