@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter - Convert Length, Weight, Area & More | Hamro Utility</title>
+    <meta name="description" content="Free online unit converter for length, weight, area, volume, temperature and more. Quick and easy conversions between metric and imperial units.">
+    <meta name="keywords" content="unit converter, measurement converter, length converter, weight converter, area converter, temperature converter, metric converter">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/unit-converter.html">
+    <meta property="og:title" content="Unit Converter - Convert Length, Weight, Area & More | Hamro Utility">
+    <meta property="og:description" content="Free online unit converter for length, weight, area, volume, temperature and more. Quick and easy conversions between metric and imperial units.">
+    <meta property="og:image" content="https://hamroutility.com/assets/unit-converter-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/unit-converter.html">
+    <meta property="twitter:title" content="Unit Converter - Convert Length, Weight, Area & More | Hamro Utility">
+    <meta property="twitter:description" content="Free online unit converter for length, weight, area, volume, temperature and more. Quick and easy conversions between metric and imperial units.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/unit-converter-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Page-specific styles */
+        .converter-hero {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, rgba(74,144,226,0.1) 0%, rgba(74,144,226,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .converter-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .converter-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .converter-container {
+            padding: 2rem 0 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .converter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .converter-tab {
+            padding: 0.7rem 1.2rem;
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .converter-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .converter-box {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .converter-form {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .converter-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .converter-info {
+            margin-top: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+        }
+
+        .converter-info h2 {
+            color: #4a90e2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .converter-info h3 {
+            color: #4a90e2;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .converter-info p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .converter-info ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .converter-info li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .converter-info li::before {
+            content: '•';
+            color: #4a90e2;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .unit-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .unit-table th, 
+        .unit-table td {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .unit-table th {
+            background-color: var(--bg-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .converter-hero {
+                padding-top: 5rem;
+            }
+            
+            .converter-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .converter-container {
+                padding: 1rem;
+            }
+            
+            .converter-box {
+                padding: 1.5rem;
+            }
+            
+            .converter-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .converter-icon {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+            
+            .converter-info {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .converter-hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .converter-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html" class="active">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="converter-hero">
+            <div class="container">
+                <h1><i class="fas fa-ruler-combined"></i> Unit Converter</h1>
+                <p>Convert between different units of measurement quickly and accurately</p>
+            </div>
+        </section>
+
+        <section class="converter-container">
+            <div class="converter-tabs">
+                <div class="converter-tab active" data-tab="length">Length</div>
+                <div class="converter-tab" data-tab="weight">Weight</div>
+                <div class="converter-tab" data-tab="area">Area</div>
+                <div class="converter-tab" data-tab="volume">Volume</div>
+                <div class="converter-tab" data-tab="temperature">Temperature</div>
+                <div class="converter-tab" data-tab="speed">Speed</div>
+            </div>
+            
+            <!-- Length Converter -->
+            <div class="converter-box" id="length-converter">
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="length-value">Value</label>
+                        <input type="number" id="length-value" placeholder="Enter value">
+                    </div>
+                    <div class="converter-icon">
+                        <i class="fas fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="length-result">Result</label>
+                        <input type="number" id="length-result" readonly>
+                    </div>
+                </div>
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="length-from">From</label>
+                        <select id="length-from">
+                            <option value="millimeter">Millimeter (mm)</option>
+                            <option value="centimeter">Centimeter (cm)</option>
+                            <option value="meter">Meter (m)</option>
+                            <option value="kilometer">Kilometer (km)</option>
+                            <option value="inch">Inch (in)</option>
+                            <option value="foot">Foot (ft)</option>
+                            <option value="yard">Yard (yd)</option>
+                            <option value="mile">Mile (mi)</option>
+                        </select>
+                    </div>
+                    <div></div>
+                    <div class="form-group">
+                        <label for="length-to">To</label>
+                        <select id="length-to">
+                            <option value="centimeter">Centimeter (cm)</option>
+                            <option value="millimeter">Millimeter (mm)</option>
+                            <option value="meter">Meter (m)</option>
+                            <option value="kilometer">Kilometer (km)</option>
+                            <option value="inch">Inch (in)</option>
+                            <option value="foot">Foot (ft)</option>
+                            <option value="yard">Yard (yd)</option>
+                            <option value="mile">Mile (mi)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weight Converter (hidden by default) -->
+            <div class="converter-box" id="weight-converter" style="display:none">
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="weight-value">Value</label>
+                        <input type="number" id="weight-value" placeholder="Enter value">
+                    </div>
+                    <div class="converter-icon">
+                        <i class="fas fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight-result">Result</label>
+                        <input type="number" id="weight-result" readonly>
+                    </div>
+                </div>
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="weight-from">From</label>
+                        <select id="weight-from">
+                            <option value="milligram">Milligram (mg)</option>
+                            <option value="gram">Gram (g)</option>
+                            <option value="kilogram">Kilogram (kg)</option>
+                            <option value="ton">Metric Ton (t)</option>
+                            <option value="ounce">Ounce (oz)</option>
+                            <option value="pound">Pound (lb)</option>
+                            <option value="stone">Stone (st)</option>
+                        </select>
+                    </div>
+                    <div></div>
+                    <div class="form-group">
+                        <label for="weight-to">To</label>
+                        <select id="weight-to">
+                            <option value="gram">Gram (g)</option>
+                            <option value="milligram">Milligram (mg)</option>
+                            <option value="kilogram">Kilogram (kg)</option>
+                            <option value="ton">Metric Ton (t)</option>
+                            <option value="ounce">Ounce (oz)</option>
+                            <option value="pound">Pound (lb)</option>
+                            <option value="stone">Stone (st)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Area Converter (hidden by default) -->
+            <div class="converter-box" id="area-converter" style="display:none">
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="area-value">Value</label>
+                        <input type="number" id="area-value" placeholder="Enter value">
+                    </div>
+                    <div class="converter-icon">
+                        <i class="fas fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="area-result">Result</label>
+                        <input type="number" id="area-result" readonly>
+                    </div>
+                </div>
+                <div class="converter-form">
+                    <div class="form-group">
+                        <label for="area-from">From</label>
+                        <select id="area-from">
+                            <option value="sqmillimeter">Square Millimeter (mm²)</option>
+                            <option value="sqcentimeter">Square Centimeter (cm²)</option>
+                            <option value="sqmeter">Square Meter (m²)</option>
+                            <option value="hectare">Hectare (ha)</option>
+                            <option value="sqkilometer">Square Kilometer (km²)</option>
+                            <option value="sqinch">Square Inch (in²)</option>
+                            <option value="sqfoot">Square Foot (ft²)</option>
+                            <option value="sqyard">Square Yard (yd²)</option>
+                            <option value="acre">Acre</option>
+                            <option value="sqmile">Square Mile (mi²)</option>
+                        </select>
+                    </div>
+                    <div></div>
+                    <div class="form-group">
+                        <label for="area-to">To</label>
+                        <select id="area-to">
+                            <option value="sqmeter">Square Meter (m²)</option>
+                            <option value="sqmillimeter">Square Millimeter (mm²)</option>
+                            <option value="sqcentimeter">Square Centimeter (cm²)</option>
+                            <option value="hectare">Hectare (ha)</option>
+                            <option value="sqkilometer">Square Kilometer (km²)</option>
+                            <option value="sqinch">Square Inch (in²)</option>
+                            <option value="sqfoot">Square Foot (ft²)</option>
+                            <option value="sqyard">Square Yard (yd²)</option>
+                            <option value="acre">Acre</option>
+                            <option value="sqmile">Square Mile (mi²)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="converter-info">
+                <h2><i class="fas fa-info-circle"></i> About Unit Conversion</h2>
+                
+                <h3>Measurement Systems</h3>
+                <p>There are two main systems of measurement used worldwide:</p>
+                <ul>
+                    <li><strong>Metric System:</strong> Used by most countries, based on units like meters, grams, and liters</li>
+                    <li><strong>Imperial System:</strong> Primarily used in the United States, based on units like feet, pounds, and gallons</li>
+                </ul>
+                
+                <h3>Common Conversion Factors</h3>
+                <table class="unit-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Metric Unit</th>
+                            <th>Imperial Unit</th>
+                            <th>Conversion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Length</td>
+                            <td>1 Centimeter</td>
+                            <td>Inch</td>
+                            <td>1 cm = 0.3937 in</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>1 Kilogram</td>
+                            <td>Pound</td>
+                            <td>1 kg = 2.2046 lbs</td>
+                        </tr>
+                        <tr>
+                            <td>Area</td>
+                            <td>1 Square Meter</td>
+                            <td>Square Foot</td>
+                            <td>1 m² = 10.764 ft²</td>
+                        </tr>
+                        <tr>
+                            <td>Volume</td>
+                            <td>1 Liter</td>
+                            <td>Gallon (US)</td>
+                            <td>1 L = 0.2642 gal</td>
+                        </tr>
+                        <tr>
+                            <td>Temperature</td>
+                            <td>°Celsius</td>
+                            <td>°Fahrenheit</td>
+                            <td>°C × 9/5 + 32 = °F</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Practical Usage Tips</h3>
+                <ol>
+                    <li>For construction projects, convert between feet and meters accurately</li>
+                    <li>When cooking, convert between grams and ounces for recipes</li>
+                    <li>For land measurement, convert between hectares and acres</li>
+                    <li>When traveling, convert between kilometers and miles</li>
+                    <li>For weather, convert between Celsius and Fahrenheit</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="unit-converter.html">Unit Converter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.mobile-menu-btn i').classList.remove('fa-times');
+            });
+        });
+        
+        // Newsletter form submission
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
+        });
+
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.converter-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all converter boxes
+                document.querySelectorAll('.converter-box').forEach(box => {
+                    box.style.display = 'none';
+                });
+                
+                // Show the selected converter box
+                const tabName = tab.getAttribute('data-tab');
+                document.getElementById(`${tabName}-converter`).style.display = 'block';
+            });
+        });
+
+        // Length conversion function
+        function convertLength() {
+            const value = parseFloat(document.getElementById('length-value').value);
+            const fromUnit = document.getElementById('length-from').value;
+            const toUnit = document.getElementById('length-to').value;
+            
+            if (isNaN(value)) return;
+            
+            // Convert to meters first
+            let meters;
+            switch(fromUnit) {
+                case 'millimeter': meters = value / 1000; break;
+                case 'centimeter': meters = value / 100; break;
+                case 'meter': meters = value; break;
+                case 'kilometer': meters = value * 1000; break;
+                case 'inch': meters = value * 0.0254; break;
+                case 'foot': meters = value * 0.3048; break;
+                case 'yard': meters = value * 0.9144; break;
+                case 'mile': meters = value * 1609.344; break;
+            }
+            
+            // Convert from meters to target unit
+            let result;
+            switch(toUnit) {
+                case 'millimeter': result = meters * 1000; break;
+                case 'centimeter': result = meters * 100; break;
+                case 'meter': result = meters; break;
+                case 'kilometer': result = meters / 1000; break;
+                case 'inch': result = meters / 0.0254; break;
+                case 'foot': result = meters / 0.3048; break;
+                case 'yard': result = meters / 0.9144; break;
+                case 'mile': result = meters / 1609.344; break;
+            }
+            
+            document.getElementById('length-result').value = result.toFixed(6);
+        }
+        
+        // Weight conversion function
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weight-value').value);
+            const fromUnit = document.getElementById('weight-from').value;
+            const toUnit = document.getElementById('weight-to').value;
+            
+            if (isNaN(value)) return;
+            
+            // Convert to grams first
+            let grams;
+            switch(fromUnit) {
+                case 'milligram': grams = value / 1000; break;
+                case 'gram': grams = value; break;
+                case 'kilogram': grams = value * 1000; break;
+                case 'ton': grams = value * 1000000; break;
+                case 'ounce': grams = value * 28.3495; break;
+                case 'pound': grams = value * 453.592; break;
+                case 'stone': grams = value * 6350.29; break;
+            }
+            
+            // Convert from grams to target unit
+            let result;
+            switch(toUnit) {
+                case 'milligram': result = grams * 1000; break;
+                case 'gram': result = grams; break;
+                case 'kilogram': result = grams / 1000; break;
+                case 'ton': result = grams / 1000000; break;
+                case 'ounce': result = grams / 28.3495; break;
+                case 'pound': result = grams / 453.592; break;
+                case 'stone': result = grams / 6350.29; break;
+            }
+            
+            document.getElementById('weight-result').value = result.toFixed(6);
+        }
+        
+        // Area conversion function
+        function convertArea() {
+            const value = parseFloat(document.getElementById('area-value').value);
+            const fromUnit = document.getElementById('area-from').value;
+            const toUnit = document.getElementById('area-to').value;
+            
+            if (isNaN(value)) return;
+            
+            // Convert to square meters first
+            let sqMeters;
+            switch(fromUnit) {
+                case 'sqmillimeter': sqMeters = value / 1000000; break;
+                case 'sqcentimeter': sqMeters = value / 10000; break;
+                case 'sqmeter': sqMeters = value; break;
+                case 'hectare': sqMeters = value * 10000; break;
+                case 'sqkilometer': sqMeters = value * 1000000; break;
+                case 'sqinch': sqMeters = value * 0.00064516; break;
+                case 'sqfoot': sqMeters = value * 0.092903; break;
+                case 'sqyard': sqMeters = value * 0.836127; break;
+                case 'acre': sqMeters = value * 4046.86; break;
+                case 'sqmile': sqMeters = value * 2589988.11; break;
+            }
+            
+            // Convert from square meters to target unit
+            let result;
+            switch(toUnit) {
+                case 'sqmillimeter': result = sqMeters * 1000000; break;
+                case 'sqcentimeter': result = sqMeters * 10000; break;
+                case 'sqmeter': result = sqMeters; break;
+                case 'hectare': result = sqMeters / 10000; break;
+                case 'sqkilometer': result = sqMeters / 1000000; break;
+                case 'sqinch': result = sqMeters / 0.00064516; break;
+                case 'sqfoot': result = sqMeters / 0.092903; break;
+                case 'sqyard': result = sqMeters / 0.836127; break;
+                case 'acre': result = sqMeters / 4046.86; break;
+                case 'sqmile': result = sqMeters / 2589988.11; break;
+            }
+            
+            document.getElementById('area-result').value = result.toFixed(6);
+        }
+        
+        // Set up event listeners for conversions
+        document.getElementById('length-value').addEventListener('input', convertLength);
+        document.getElementById('length-from').addEventListener('change', convertLength);
+        document.getElementById('length-to').addEventListener('change', convertLength);
+        
+        document.getElementById('weight-value').addEventListener('input', convertWeight);
+        document.getElementById('weight-from').addEventListener('change', convertWeight);
+        document.getElementById('weight-to').addEventListener('change', convertWeight);
+        
+        document.getElementById('area-value').addEventListener('input', convertArea);
+        document.getElementById('area-from').addEventListener('change', convertArea);
+        document.getElementById('area-to').addEventListener('change', convertArea);
+    </script>
+</body>
+</html>

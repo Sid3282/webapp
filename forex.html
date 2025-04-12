@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Rates in Nepal Today - USD, EUR, GBP Exchange Rates | Hamro Utility</title>
+    <meta name="description" content="Get today's forex exchange rates in Nepal. Check USD, EUR, GBP to NPR rates updated throughout the day from Nepal Rastra Bank and commercial banks.">
+    <meta name="keywords" content="forex rate nepal, exchange rate nepal, usd to npr, eur to npr, gbp to npr, nepal rastra bank rate, today forex rate">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/forex.html">
+    <meta property="og:title" content="Forex Rates in Nepal Today - USD, EUR, GBP Exchange Rates | Hamro Utility">
+    <meta property="og:description" content="Get today's forex exchange rates in Nepal. Check USD, EUR, GBP to NPR rates updated throughout the day.">
+    <meta property="og:image" content="https://hamroutility.com/assets/forex-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/forex.html">
+    <meta property="twitter:title" content="Forex Rates in Nepal Today - USD, EUR, GBP Exchange Rates | Hamro Utility">
+    <meta property="twitter:description" content="Get today's forex exchange rates in Nepal. Check USD, EUR, GBP to NPR rates updated throughout the day.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/forex-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Forex specific styles */
+        .forex-hero {
+            padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, rgba(56,180,94,0.1) 0%, rgba(211,47,47,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .forex-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .forex-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .forex-container {
+            padding: 3rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .forex-widget {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-header p {
+            color: var(--text-secondary);
+        }
+
+        .forex-calculator {
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .calculator-result {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .calculator-result p {
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-result .value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .forex-hero {
+                padding-top: 5rem;
+            }
+            
+            .forex-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .forex-container {
+                padding: 2rem 1rem;
+            }
+            
+            .forex-widget {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .forex-hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Hide Ashes branding */
+        iframe + br + span {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html" class="active">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="forex-hero">
+            <div class="container">
+                <h1>Today's Forex Rates in Nepal</h1>
+                <p>Get live exchange rates for USD, EUR, GBP and other currencies against Nepalese Rupee (NPR)</p>
+            </div>
+        </section>
+
+        <section class="forex-container">
+            <div class="forex-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-exchange-alt"></i> Foreign Exchange Rates</h2>
+                    <p>Current buying and selling rates updated throughout the day</p>
+                </div>
+                
+                <!-- Forex Rate Widget -->
+                <iframe src="https://www.ashesh.com.np/forex/widget2.php?api=291041p098&header_color=D32F2F&background_color=ffffff&header_title=Exchange%20Rates" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:100%; height:383px; border-radius:5px;" allowtransparency="true"></iframe>
+                
+                <!-- Forex Calculator -->
+                <div class="forex-calculator">
+                    <div class="calculator-header">
+                        <h3><i class="fas fa-calculator"></i> Currency Converter</h3>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="from-currency">From</label>
+                            <select id="from-currency">
+                                <option value="USD">US Dollar (USD)</option>
+                                <option value="EUR">Euro (EUR)</option>
+                                <option value="GBP">British Pound (GBP)</option>
+                                <option value="AUD">Australian Dollar (AUD)</option>
+                                <option value="CAD">Canadian Dollar (CAD)</option>
+                                <option value="NPR" selected>Nepalese Rupee (NPR)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="to-currency">To</label>
+                            <select id="to-currency">
+                                <option value="USD" selected>US Dollar (USD)</option>
+                                <option value="EUR">Euro (EUR)</option>
+                                <option value="GBP">British Pound (GBP)</option>
+                                <option value="AUD">Australian Dollar (AUD)</option>
+                                <option value="CAD">Canadian Dollar (CAD)</option>
+                                <option value="NPR">Nepalese Rupee (NPR)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button id="calculate-forex" class="btn">Convert</button>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-result" id="forex-result">
+                        <p>Enter amount and click convert to see the result</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forex Information -->
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> About Forex Rates in Nepal</h3>
+                <p>The foreign exchange rates in Nepal are regulated by Nepal Rastra Bank (NRB). Commercial banks and exchange counters must follow the rates set by NRB, with a small margin allowed for their services.</p>
+                
+                <h4>Key Points About Forex in Nepal:</h4>
+                <ul>
+                    <li>Exchange rates are updated daily by Nepal Rastra Bank</li>
+                    <li>Banks and exchange counters may have slightly different rates</li>
+                    <li>USD is the most traded foreign currency in Nepal</li>
+                    <li>There are limits on how much foreign currency you can buy/sell without documentation</li>
+                </ul>
+                
+                <h4>Common Exchange Rates:</h4>
+                <ul>
+                    <li><strong>USD to NPR</strong>: Most commonly used rate for remittance and trade</li>
+                    <li><strong>EUR to NPR</strong>: Important for European travelers and trade</li>
+                    <li><strong>GBP to NPR</strong>: Relevant for UK-Nepal remittance and travel</li>
+                    <li><strong>INR to NPR</strong>: Fixed at 1.6 NPR per INR (as per Nepal-India currency agreement)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features and tools.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        const currentYearElement = document.getElementById('current-year');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const dropdowns = document.querySelectorAll('.dropdown > a');
+        const calculateForexBtn = document.getElementById('calculate-forex');
+        const forexResult = document.getElementById('forex-result');
+
+        // Sample exchange rates (in a real app, these would come from an API)
+        const exchangeRates = {
+            "USD": 132.50,
+            "EUR": 142.30,
+            "GBP": 160.75,
+            "AUD": 87.45,
+            "CAD": 97.20,
+            "NPR": 1
+        };
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            currentYearElement.textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                });
+            });
+            
+            // Mobile dropdown toggle
+            dropdowns.forEach(dropdownLink => {
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = dropdownLink.parentElement;
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Newsletter form submission
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+
+            // Forex calculator
+            if (calculateForexBtn) {
+                calculateForexBtn.addEventListener('click', calculateForex);
+            }
+        });
+
+        // Close dropdown when clicking outside (for desktop)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown') && window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+
+        // Dark Mode Toggle
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', () => {
+                document.body.setAttribute('data-theme', 
+                    document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+                
+                // Update icon
+                const icon = darkModeToggle.querySelector('i');
+                if (document.body.getAttribute('data-theme') === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+            });
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.setAttribute('data-theme', savedTheme);
+                const icon = darkModeToggle.querySelector('i');
+                if (savedTheme === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+        }
+
+        // Calculate forex conversion
+        function calculateForex() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+            
+            // In a real implementation, you would get current rates from the widget or an API
+            // For this demo, we're using the sample rates defined above
+            
+            // Get conversion rates (1 unit of fromCurrency in toCurrency)
+            const fromRate = exchangeRates[fromCurrency];
+            const toRate = exchangeRates[toCurrency];
+            
+            // Calculate converted amount
+            const convertedAmount = (amount / fromRate) * toRate;
+            
+            forexResult.innerHTML = `
+                <p><strong>${amount.toFixed(2)} ${fromCurrency} =</strong></p>
+                <p class="value">${convertedAmount.toFixed(2)} ${toCurrency}</p>
+                <p><small>Based on current market rates</small></p>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Weather Forecast - Current Conditions & Updates | Hamro Utility</title>
+    <meta name="description" content="Get accurate Nepal weather forecasts and current conditions for major cities. Real-time temperature, rainfall, and weather alerts for planning your day in Nepal.">
+    <meta name="keywords" content="nepal weather, weather in nepal, kathmandu weather, pokhara weather, nepal weather forecast, nepal temperature, nepal rainfall">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/weather.html">
+    <meta property="og:title" content="Nepal Weather Forecast - Current Conditions & Updates | Hamro Utility">
+    <meta property="og:description" content="Get accurate Nepal weather forecasts and current conditions for major cities. Real-time updates for planning your day in Nepal.">
+    <meta property="og:image" content="https://hamroutility.com/assets/nepal-weather-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/weather.html">
+    <meta property="twitter:title" content="Nepal Weather Forecast - Current Conditions & Updates | Hamro Utility">
+    <meta property="twitter:description" content="Get accurate Nepal weather forecasts and current conditions for major cities. Real-time updates for planning your day in Nepal.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/nepal-weather-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Page-specific styles */
+        .weather-hero {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, rgba(0,162,226,0.1) 0%, rgba(0,162,226,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .weather-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: #00a2e2;
+        }
+
+        .weather-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .weather-container {
+            padding: 2rem 0 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .weather-widget-container {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-header h2 {
+            color: #00a2e2;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-header p {
+            color: var(--text-secondary);
+        }
+
+        .weather-info {
+            margin-top: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+        }
+
+        .weather-info h2 {
+            color: #00a2e2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .weather-info h3 {
+            color: #00a2e2;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .weather-info p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .weather-info ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .weather-info li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .weather-info li::before {
+            content: '•';
+            color: #00a2e2;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .city-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .city-item {
+            background-color: var(--bg-color);
+            padding: 0.8rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .credit-text {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .weather-hero {
+                padding-top: 5rem;
+            }
+            
+            .weather-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .weather-container {
+                padding: 1rem;
+            }
+            
+            .weather-widget-container {
+                padding: 1.5rem;
+            }
+            
+            .weather-info {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .weather-hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html" class="active">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="weather-hero">
+            <div class="container">
+                <h1><i class="fas fa-cloud-sun"></i> Nepal Weather Forecast</h1>
+                <p>Real-time weather updates and forecasts for cities across Nepal. Plan your day with accurate temperature, rainfall, and weather alerts.</p>
+            </div>
+        </section>
+
+        <section class="weather-container">
+            <div class="weather-widget-container">
+                <div class="widget-header">
+                    <h2><i class="fas fa-temperature-half"></i> Current Weather Conditions</h2>
+                    <p>Live weather observations from across Nepal</p>
+                </div>
+                
+                <!-- Weather Widget -->
+                <iframe src="https://www.ashesh.com.np/weather/widget.php?title=Nepal Weather Observation&header_color=00a2e2&api=281041p185" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:100%; height:383px; border-radius:5px;" allowtransparency="true"></iframe>
+                
+                <div class="credit-text">
+                    Nepal Weather Data
+                </div>
+            </div>
+            
+            <div class="weather-info">
+                <h2><i class="fas fa-info-circle"></i> Nepal Weather Information</h2>
+                
+                <h3>Current Weather Patterns</h3>
+                <p>Nepal experiences diverse weather conditions due to its varied topography, ranging from tropical in the southern plains to arctic in the high Himalayas. Our weather tool provides real-time updates from meteorological stations across the country.</p>
+                
+                <h3>Major Cities Weather Overview</h3>
+                <div class="city-list">
+                    <div class="city-item">Kathmandu Valley</div>
+                    <div class="city-item">Pokhara</div>
+                    <div class="city-item">Chitwan</div>
+                    <div class="city-item">Lumbini</div>
+                    <div class="city-item">Janakpur</div>
+                    <div class="city-item">Biratnagar</div>
+                    <div class="city-item">Dharan</div>
+                    <div class="city-item">Nepalgunj</div>
+                </div>
+                
+                <h3>Seasonal Weather Guide</h3>
+                <ul>
+                    <li><strong>Spring (March-May):</strong> Mild temperatures, occasional rain, ideal for trekking</li>
+                    <li><strong>Summer/Monsoon (June-August):</strong> Heavy rainfall, high humidity, warm temperatures</li>
+                    <li><strong>Autumn (September-November):</strong> Clear skies, moderate temperatures, peak tourist season</li>
+                    <li><strong>Winter (December-February):</strong> Cold in mountains, mild in valleys, dry weather</li>
+                </ul>
+                
+                <h3>Weather Safety Tips</h3>
+                <ol>
+                    <li>Check forecasts regularly during monsoon for flood alerts</li>
+                    <li>Prepare for temperature drops in mountainous regions</li>
+                    <li>Carry rain gear during summer months</li>
+                    <li>Monitor air quality in Kathmandu Valley during dry seasons</li>
+                    <li>Check road conditions before travel during heavy rains</li>
+                </ol>
+                
+                <h3>Understanding Weather Data</h3>
+                <p>Our weather widget displays:</p>
+                <ul>
+                    <li><strong>Temperature:</strong> Current air temperature in Celsius</li>
+                    <li><strong>Humidity:</strong> Relative humidity percentage</li>
+                    <li><strong>Rainfall:</strong> Precipitation measurements</li>
+                    <li><strong>Wind:</strong> Speed and direction</li>
+                    <li><strong>Pressure:</strong> Atmospheric pressure readings</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="weather.html">Weather Forecast</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get weather alerts and updates.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.mobile-menu-btn i').classList.remove('fa-times');
+            });
+        });
+        
+        // Newsletter form submission
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to weather updates!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

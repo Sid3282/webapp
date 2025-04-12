@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Date Converter - Convert BS to AD & AD to BS | Hamro Utility</title>
+    <meta name="description" content="Free online Nepali date converter tool to convert between Bikram Sambat (BS) and Gregorian (AD) calendars using the most accurate Ashesh converter.">
+    <meta name="keywords" content="nepali date converter, date converter, bs to ad, ad to bs, bikram sambat, nepali calendar, nepali date, convert nepali date">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/date-converter.html">
+    <meta property="og:title" content="Nepali Date Converter - Convert BS to AD & AD to BS | Hamro Utility">
+    <meta property="og:description" content="Free online Nepali date converter tool to convert between Bikram Sambat (BS) and Gregorian (AD) calendars.">
+    <meta property="og:image" content="https://hamroutility.com/assets/date-converter-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/date-converter.html">
+    <meta property="twitter:title" content="Nepali Date Converter - Convert BS to AD & AD to BS | Hamro Utility">
+    <meta property="twitter:description" content="Free online Nepali date converter tool to convert between Bikram Sambat (BS) and Gregorian (AD) calendars.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/date-converter-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Only styles specific to date converter content */
+        .date-converter-hero {
+            padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, rgba(211,47,47,0.1) 0%, rgba(255,215,0,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .date-converter-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .date-converter-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .converter-container {
+            padding: 3rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .converter-widget {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-header p {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .date-converter-hero {
+                padding-top: 5rem;
+            }
+            
+            .date-converter-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .converter-container {
+                padding: 2rem 1rem;
+            }
+            
+            .converter-widget {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .date-converter-hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html" class="active">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="date-converter-hero">
+            <div class="container">
+                <h1>Nepali Date Converter</h1>
+                <p>Convert between Bikram Sambat (BS) and Gregorian (AD) calendars with our accurate date conversion tool</p>
+            </div>
+        </section>
+
+        <section class="converter-container">
+            <div class="converter-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Date Converter</h2>
+                    <p>Select a date to convert between Nepali (BS) and English (AD) calendars</p>
+                </div>
+                
+                <!-- Start of nepali date converter widget -->
+                <div id="nepali-date-converter-widget">
+                    <script type="text/javascript">
+                        var nc_dc_width = 'responsive';
+                        var nc_dc_height = 190;
+                        var nc_dc_api_id = 24520250411214;
+                    </script>
+                    <script type="text/javascript" src="https://www.ashesh.com.np/nepali-date/dcnew.js"></script>
+                    <div id="ncwidgetlink"></a></div>
+                </div>
+                <!-- End of nepali date converter widget -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features and tools.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        const currentYearElement = document.getElementById('current-year');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const dropdowns = document.querySelectorAll('.dropdown > a');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            currentYearElement.textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                });
+            });
+            
+            // Mobile dropdown toggle
+            dropdowns.forEach(dropdownLink => {
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = dropdownLink.parentElement;
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Newsletter form submission
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+        });
+
+        // Close dropdown when clicking outside (for desktop)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown') && window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

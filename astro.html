@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Astro Summary - Today's Panchanga & Rashifal | Hamro Utility</title>
+    <meta name="description" content="Get daily Nepali Panchanga and Rashifal (horoscope) updates. Accurate astrological information for all zodiac signs with traditional Nepali calendar details.">
+    <meta name="keywords" content="nepali panchanga, nepali rashifal, today's panchanga, nepali horoscope, nepali astrology, daily rashifal, nepali tithi, nepali astro">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/astro.html">
+    <meta property="og:title" content="Nepali Astro Summary - Today's Panchanga & Rashifal | Hamro Utility">
+    <meta property="og:description" content="Get daily Nepali Panchanga and Rashifal (horoscope) updates. Accurate astrological information for all zodiac signs.">
+    <meta property="og:image" content="https://hamroutility.com/assets/nepali-astro-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/astro.html">
+    <meta property="twitter:title" content="Nepali Astro Summary - Today's Panchanga & Rashifal | Hamro Utility">
+    <meta property="twitter:description" content="Get daily Nepali Panchanga and Rashifal (horoscope) updates. Accurate astrological information for all zodiac signs.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/nepali-astro-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Page-specific styles */
+        .astro-hero {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, rgba(240,176,63,0.1) 0%, rgba(230,229,226,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .astro-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: #f0b03f;
+        }
+
+        .astro-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .astro-container {
+            padding: 2rem 0 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .widget-container {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-header p {
+            color: var(--text-secondary);
+        }
+
+        .astro-info {
+            margin-top: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+        }
+
+        .astro-info h2 {
+            color: #f0b03f;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .astro-info h3 {
+            color: #f0b03f;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .astro-info p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .astro-info ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .astro-info li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .astro-info li::before {
+            content: '•';
+            color: #f0b03f;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .zodiac-signs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .zodiac-item {
+            background-color: var(--bg-color);
+            padding: 0.8rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .credit-text {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .astro-hero {
+                padding-top: 5rem;
+            }
+            
+            .astro-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .astro-container {
+                padding: 1rem;
+            }
+            
+            .widget-container {
+                padding: 1.5rem;
+            }
+            
+            .astro-info {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .astro-hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .zodiac-signs {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html" class="active">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="astro-hero">
+            <div class="container">
+                <h1><i class="fas fa-star"></i> Nepali Astro Summary</h1>
+                <p>Daily Panchanga and Rashifal updates based on traditional Nepali astrology</p>
+            </div>
+        </section>
+
+        <section class="astro-container">
+            <div class="widget-container">
+                <div class="widget-header">
+                    <h2><i class="fas fa-calendar-day"></i> Today's Panchanga</h2>
+                    <p>Traditional Nepali calendar with astrological details</p>
+                </div>
+                
+                <!-- Panchanga Widget -->
+                <iframe src="https://www.ashesh.com.np/panchang/widget.php?header_title=Nepali Panchang&header_color=e6e5e2&api=281043p264" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:100%; height:365px; border-radius:5px;" allowtransparency="true"></iframe>
+                
+                <div class="credit-text">
+                    Nepali Panchanga Data
+                </div>
+            </div>
+            
+            <div class="widget-container">
+                <div class="widget-header">
+                    <h2 style="color: #f0b03f;"><i class="fas fa-sun"></i> Daily Rashifal</h2>
+                    <p>Today's horoscope for all zodiac signs</p>
+                </div>
+                
+                <!-- Rashifal Widget -->
+                <iframe src="https://www.ashesh.com.np/rashifal/widget.php?header_title=Nepali Rashifal&header_color=f0b03f&api=281043p214" frameborder="0" scrolling="yes" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:100%; height:365px; border-radius:5px;" allowtransparency="true"></iframe>
+                
+                <div class="credit-text">
+                    Nepali Rashifal Predictions
+                </div>
+            </div>
+            
+            <div class="astro-info">
+                <h2><i class="fas fa-info-circle"></i> Understanding Nepali Astrology</h2>
+                
+                <h3>What is Panchanga?</h3>
+                <p>Panchanga is the traditional Hindu astrological calendar that provides five essential elements of time:</p>
+                <ul>
+                    <li><strong>Tithi:</strong> Lunar day</li>
+                    <li><strong>Nakshatra:</strong> Constellation</li>
+                    <li><strong>Yoga:</strong> Auspicious/inauspicious periods</li>
+                    <li><strong>Karana:</strong> Half of a tithi</li>
+                    <li><strong>Vaar:</strong> Day of the week</li>
+                </ul>
+                
+                <h3>About Rashifal (Horoscope)</h3>
+                <p>Nepali Rashifal is based on Vedic astrology and provides daily predictions for all 12 zodiac signs:</p>
+                <div class="zodiac-signs">
+                    <div class="zodiac-item">Mesh (Aries)</div>
+                    <div class="zodiac-item">Brish (Taurus)</div>
+                    <div class="zodiac-item">Mithun (Gemini)</div>
+                    <div class="zodiac-item">Karkat (Cancer)</div>
+                    <div class="zodiac-item">Singha (Leo)</div>
+                    <div class="zodiac-item">Kanya (Virgo)</div>
+                    <div class="zodiac-item">Tula (Libra)</div>
+                    <div class="zodiac-item">Brischik (Scorpio)</div>
+                    <div class="zodiac-item">Dhanu (Sagittarius)</div>
+                    <div class="zodiac-item">Makar (Capricorn)</div>
+                    <div class="zodiac-item">Kumbha (Aquarius)</div>
+                    <div class="zodiac-item">Meen (Pisces)</div>
+                </div>
+                
+                <h3>How to Use This Information</h3>
+                <ol>
+                    <li>Check today's Panchanga for auspicious timings (shubha muhurta)</li>
+                    <li>Read your Rashifal for daily guidance</li>
+                    <li>Plan important activities according to favorable planetary positions</li>
+                    <li>Note inauspicious periods (like Rahu Kaal) to avoid</li>
+                    <li>Use this information as guidance rather than absolute prediction</li>
+                </ol>
+                
+                <h3>Cultural Significance</h3>
+                <p>Astrology plays an important role in Nepali culture for:</p>
+                <ul>
+                    <li>Determining wedding dates and other ceremonies</li>
+                    <li>Naming newborns according to nakshatra</li>
+                    <li>Starting new ventures and business activities</li>
+                    <li>Planning travel and important life events</li>
+                    <li>Understanding personality traits and compatibilities</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="astro.html">Astro Summary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get daily astro updates.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.mobile-menu-btn i').classList.remove('fa-times');
+            });
+        });
+        
+        // Newsletter form submission
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to astro updates!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

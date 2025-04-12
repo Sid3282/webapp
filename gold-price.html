@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Price in Nepal Today - Daily Gold & Silver Rates | Hamro Utility</title>
+    <meta name="description" content="Get today's gold price in Nepal with live updates. Check 24K, 22K gold rates and silver price per tola in Nepalese rupees (NPR) updated throughout the day.">
+    <meta name="keywords" content="gold price nepal, gold rate today, nepal gold price, silver price nepal, gold price in kathmandu, today gold rate">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/gold-price.html">
+    <meta property="og:title" content="Gold Price in Nepal Today - Daily Gold & Silver Rates | Hamro Utility">
+    <meta property="og:description" content="Get today's gold price in Nepal with live updates. Check 24K, 22K gold rates and silver price per tola in Nepalese rupees (NPR).">
+    <meta property="og:image" content="https://hamroutility.com/assets/gold-price-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/gold-price.html">
+    <meta property="twitter:title" content="Gold Price in Nepal Today - Daily Gold & Silver Rates | Hamro Utility">
+    <meta property="twitter:description" content="Get today's gold price in Nepal with live updates. Check 24K, 22K gold rates and silver price per tola in Nepalese rupees (NPR).">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/gold-price-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Gold price specific styles */
+        .gold-price-hero {
+            padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(211,47,47,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .gold-price-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .gold-price-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .gold-price-container {
+            padding: 3rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gold-price-widget {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-header p {
+            color: var(--text-secondary);
+        }
+
+        .gold-calculator {
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .calculator-result {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .calculator-result p {
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-result .value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .gold-price-hero {
+                padding-top: 5rem;
+            }
+            
+            .gold-price-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gold-price-container {
+                padding: 2rem 1rem;
+            }
+            
+            .gold-price-widget {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gold-price-hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Hide Ashes branding */
+        iframe + br + span {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html" class="active">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="gold-price-hero">
+            <div class="container">
+                <h1>Today's Gold Price in Nepal</h1>
+                <p>Get live updates of gold and silver prices in Nepalese rupees (NPR) with our accurate gold rate tracker</p>
+            </div>
+        </section>
+
+        <section class="gold-price-container">
+            <div class="gold-price-widget">
+                <div class="widget-header">
+                    <h2><i class="fas fa-coins"></i> Gold & Silver Rates</h2>
+                    <p>Current market prices updated throughout the day</p>
+                </div>
+                
+                <!-- Gold Price Widget -->
+                <iframe src="https://www.ashesh.com.np/gold/widget.php?api=281040p419&header_color=D32F2F" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:100%; height:265px; border-radius:5px;" allowtransparency="true"></iframe>
+                
+                <!-- Gold Calculator -->
+                <div class="gold-calculator">
+                    <div class="calculator-header">
+                        <h3><i class="fas fa-calculator"></i> Gold Value Calculator</h3>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gold-amount">Amount</label>
+                            <input type="number" id="gold-amount" placeholder="Enter amount" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="gold-unit">Unit</label>
+                            <select id="gold-unit">
+                                <option value="tola">Tola</option>
+                                <option value="gram">Gram</option>
+                                <option value="pau">Pau</option>
+                                <option value="dharni">Dharni</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gold-type">Gold Type</label>
+                            <select id="gold-type">
+                                <option value="24k">24 Karat</option>
+                                <option value="22k">22 Karat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button id="calculate-gold" class="btn">Calculate Value</button>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-result" id="gold-result">
+                        <p>Enter amount and click calculate to see the value</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gold Price Information -->
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> About Gold Prices in Nepal</h3>
+                <p>The gold price in Nepal fluctuates daily based on international market rates and local demand. Prices are typically updated multiple times per day by the Nepal Gold and Silver Dealers Association.</p>
+                
+                <h4>Key Factors Affecting Gold Prices:</h4>
+                <ul>
+                    <li>International gold market prices (USD per ounce)</li>
+                    <li>USD to NPR exchange rate</li>
+                    <li>Local demand and market conditions</li>
+                    <li>Government taxes and regulations</li>
+                </ul>
+                
+                <h4>Common Gold Measurements in Nepal:</h4>
+                <ul>
+                    <li><strong>Tola</strong>: 11.6638 grams</li>
+                    <li><strong>Pau</strong>: ½ Tola (5.8319 grams)</li>
+                    <li><strong>Dharni</strong>: 2.5 Tola (29.1595 grams)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features and tools.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        const currentYearElement = document.getElementById('current-year');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const dropdowns = document.querySelectorAll('.dropdown > a');
+        const calculateGoldBtn = document.getElementById('calculate-gold');
+        const goldResult = document.getElementById('gold-result');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            currentYearElement.textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                });
+            });
+            
+            // Mobile dropdown toggle
+            dropdowns.forEach(dropdownLink => {
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = dropdownLink.parentElement;
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Newsletter form submission
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+
+            // Gold calculator
+            if (calculateGoldBtn) {
+                calculateGoldBtn.addEventListener('click', calculateGoldValue);
+            }
+        });
+
+        // Close dropdown when clicking outside (for desktop)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown') && window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+
+        // Dark Mode Toggle
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', () => {
+                document.body.setAttribute('data-theme', 
+                    document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+                
+                // Update icon
+                const icon = darkModeToggle.querySelector('i');
+                if (document.body.getAttribute('data-theme') === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+            });
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.setAttribute('data-theme', savedTheme);
+                const icon = darkModeToggle.querySelector('i');
+                if (savedTheme === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+        }
+
+        // Calculate gold value
+        function calculateGoldValue() {
+            const amount = parseFloat(document.getElementById('gold-amount').value) || 0;
+            const unit = document.getElementById('gold-unit').value;
+            const type = document.getElementById('gold-type').value;
+            
+            // Get current prices from the widget (these would be parsed from the widget in a real implementation)
+            // For demo purposes, we'll use placeholder values
+            const current24kPrice = 125000; // Rs. per tola (24K)
+            const current22kPrice = 118750; // Rs. per tola (22K)
+            
+            // Conversion factors
+            const tolaToGram = 11.6638;
+            const pauToGram = 11.6638 * 0.5;
+            const dharniToGram = 11.6638 * 2.5;
+            
+            let grams;
+            switch (unit) {
+                case 'tola': grams = amount * tolaToGram; break;
+                case 'gram': grams = amount; break;
+                case 'pau': grams = amount * pauToGram; break;
+                case 'dharni': grams = amount * dharniToGram; break;
+            }
+            
+            const pricePerGram = type === '24k' 
+                ? current24kPrice / tolaToGram 
+                : current22kPrice / tolaToGram;
+            
+            const value = grams * pricePerGram;
+            
+            goldResult.innerHTML = `
+                <p><strong>Amount:</strong> ${amount} ${unit}</p>
+                <p><strong>Type:</strong> ${type === '24k' ? '24 Karat Gold' : '22 Karat Gold'}</p>
+                <p><strong>Current Value:</strong> <span class="value">Rs. ${value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                <p><small>Based on current market rates</small></p>
+            `;
+        }
+    </script>
+</body>
+</html>

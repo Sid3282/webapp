@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Unicode Typing Tool - Type in Nepali Online | Hamro Utility</title>
+    <meta name="description" content="Free online Nepali Unicode typing tool. Convert Romanized Nepali text to Unicode instantly. Perfect for chatting, emailing, social media, and all digital platforms.">
+    <meta name="keywords" content="nepali unicode, unicode nepali, nepali typing, type in nepali, nepali font converter, roman to unicode, nepali keyboard online">
+    <meta name="author" content="Hamro Utility">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hamroutility.com/nepali-unicode.html">
+    <meta property="og:title" content="Nepali Unicode Typing Tool - Type in Nepali Online | Hamro Utility">
+    <meta property="og:description" content="Free online Nepali Unicode typing tool. Convert Romanized Nepali text to Unicode instantly.">
+    <meta property="og:image" content="https://hamroutility.com/assets/nepali-unicode-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hamroutility.com/nepali-unicode.html">
+    <meta property="twitter:title" content="Nepali Unicode Typing Tool - Type in Nepali Online | Hamro Utility">
+    <meta property="twitter:description" content="Free online Nepali Unicode typing tool. Convert Romanized Nepali text to Unicode instantly.">
+    <meta property="twitter:image" content="https://hamroutility.com/assets/nepali-unicode-preview.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <style>
+        /* Page-specific styles */
+        .unicode-hero {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, rgba(211,47,47,0.1) 0%, rgba(255,215,0,0.05) 100%);
+            margin-top: -70px;
+            padding-top: 7rem;
+            text-align: center;
+        }
+
+        .unicode-hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .unicode-hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .unicode-container {
+            padding: 2rem 0 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .converter-box {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .converter-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .converter-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .converter-header p {
+            color: var(--text-secondary);
+        }
+
+        .unicode-info {
+            margin-top: 2rem;
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+        }
+
+        .unicode-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .unicode-info p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .unicode-info ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .unicode-info li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .unicode-info li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: -1rem;
+        }
+
+        .credit-text {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .unicode-hero {
+                padding-top: 5rem;
+            }
+            
+            .unicode-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .unicode-container {
+                padding: 1rem;
+            }
+            
+            .converter-box {
+                padding: 1.5rem;
+            }
+            
+            .unicode-info {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .unicode-hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hamro Utility</h1>
+                <p>Daily Essentials for Every Nepali</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <h4>Date & Time</h4>
+                                    <a href="date-converter.html">Date Converter</a>
+                                    <a href="calendar.html">Calendar</a>
+                                    <a href="nepali-time.html">Nepali Time</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Financial</h4>
+                                    <a href="gold-price.html">Gold Price</a>
+                                    <a href="forex.html">Forex Rates</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Utilities</h4>
+                                    <a href="weather.html">Weather</a>
+                                    <a href="astro.html">Astro Summary</a>
+                                    <a href="unit-converter.html">Unit Converter</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Nepali Typing</h4>
+                                    <a href="nepali-unicode.html" class="active">Nepali Unicode</a>
+                                    <a href="preeti-to-unicode.html">Preeti to Unicode</a>
+                                    <a href="unicode-to-preeti.html">Unicode to Preeti</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ne">नेपाली</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="unicode-hero">
+            <div class="container">
+                <h1>Nepali Unicode Typing Tool</h1>
+                <p>Type in Nepali instantly using our free online Unicode converter. Perfect for social media, emails, and all digital communication.</p>
+            </div>
+        </section>
+
+        <section class="unicode-container">
+            <div class="converter-box">
+                <div class="converter-header">
+                    <h2><i class="fas fa-keyboard"></i> Nepali Unicode Converter</h2>
+                    <p>Type in Romanized Nepali below and get instant Unicode conversion</p>
+                </div>
+                
+                <!-- Nepali Unicode Converter Widget -->
+                <iframe width="100%" height="400" frameborder="0" border="no" scrolling="no" marginwidth="0" marginheight="0" allowtransparency="true" src="https://www.ashesh.com.np/linknepali-unicode3.php?api=131248p551"></iframe>
+                
+                <div class="credit-text">
+                    Nepali Unicode Converter Tool
+                </div>
+            </div>
+            
+            <div class="unicode-info">
+                <h2>About Nepali Unicode</h2>
+                <p>Nepali Unicode is the standard digital encoding system for Nepali language text that works across all platforms and devices. Unlike traditional Nepali fonts that require special installation, Unicode Nepali works everywhere - from social media to email clients to websites.</p>
+                
+                <h3>Why Use Nepali Unicode?</h3>
+                <ul>
+                    <li><strong>Universal Compatibility:</strong> Works on all devices, browsers, and operating systems without needing special fonts</li>
+                    <li><strong>Easy to Use:</strong> Simply type in Romanized Nepali (like "namaste") and our tool converts it to proper Unicode</li>
+                    <li><strong>Social Media Ready:</strong> Perfect for Facebook posts, Twitter tweets, Instagram captions, and WhatsApp messages</li>
+                    <li><strong>Professional Use:</strong> Create documents, emails, and presentations in proper Nepali script</li>
+                    <li><strong>No Installation Needed:</strong> Works directly in your web browser with no downloads required</li>
+                </ul>
+                
+                <h3>How to Use This Nepali Typing Tool</h3>
+                <p>Our converter makes typing in Nepali simple:</p>
+                <ol>
+                    <li>Type Nepali words using English letters in the box above (e.g., "mero naam Ram ho")</li>
+                    <li>The tool automatically converts your text to Nepali Unicode characters</li>
+                    <li>Copy the converted text and paste it anywhere - Facebook, Word documents, emails, etc.</li>
+                </ol>
+                
+                <p>This Nepali Unicode converter is optimized for all modern browsers and devices. Whether you're using a computer, tablet, or smartphone, you can easily type in Nepali wherever you need it.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                        <li><a href="forex.html">Forex Rates</a></li>
+                        <li><a href="nepali-unicode.html">Nepali Unicode</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features and tools.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.mobile-menu-btn i').classList.remove('fa-times');
+            });
+        });
+        
+        // Newsletter form submission
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
