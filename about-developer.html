@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Developer - Hamro Utility</title>
-    <meta name="description" content="Learn about the developer behind Hamro Utility - Siddha Batala">
+    <title>About the Developer - Hamro Utility</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Base Styles */
         :root {
             --primary-color: #D32F2F;
             --primary-dark: #9A0007;
@@ -23,8 +23,10 @@
             --font-primary: 'Poppins', sans-serif;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
             --radius-sm: 4px;
             --radius-md: 8px;
+            --radius-lg: 12px;
             --transition: all 0.3s ease;
         }
 
@@ -64,6 +66,23 @@
             padding: 0 1rem;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* Header Styles */
         header {
             background-color: var(--bg-color);
             box-shadow: var(--shadow-sm);
@@ -71,6 +90,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: var(--transition);
             padding: 0.5rem 0;
             border-bottom: 1px solid var(--border-color);
         }
@@ -105,128 +125,176 @@
             color: var(--text-secondary);
         }
 
-        .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            color: var(--primary-color);
-        }
-
-        .developer-section {
+        /* Developer Page Styles */
+        .developer-hero {
             padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, rgba(211,47,47,0.1) 0%, rgba(255,215,0,0.05) 100%);
         }
 
         .developer-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
         .developer-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .developer-image img {
+            width: 300px;
+            height: 300px;
             object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
             border: 5px solid var(--primary-color);
-            margin: 0 auto 1.5rem;
-            display: block;
         }
 
-        .developer-section h1 {
+        .developer-content {
+            flex: 2;
+        }
+
+        .developer-content h1 {
+            font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .developer-title {
+        .developer-content h2 {
+            font-size: 1.2rem;
             color: var(--secondary-dark);
-            font-size: 1.1rem;
             margin-bottom: 1.5rem;
+            font-weight: 500;
         }
 
         .developer-bio {
-            background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: var(--radius-md);
-            margin: 2rem 0;
-            text-align: left;
+            margin-bottom: 2rem;
         }
 
         .developer-bio p {
             margin-bottom: 1rem;
-            color: var(--text-secondary);
+            font-size: 1.05rem;
         }
 
-        .developer-contact {
-            margin-top: 2rem;
+        .developer-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        .detail-card {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-card h3 {
+            color: var(--primary-color);
+            font-size: 1rem;
             margin-bottom: 0.5rem;
+        }
+
+        .detail-card p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
         }
 
         .social-links {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 3rem;
+            height: 3rem;
             background-color: rgba(211, 47, 47, 0.1);
             color: var(--primary-color);
             border-radius: 50%;
             transition: var(--transition);
+            font-size: 1.2rem;
         }
 
         .social-links a:hover {
             background-color: var(--primary-color);
             color: white;
+            transform: translateY(-3px);
         }
 
+        /* Footer Styles */
         footer {
             background-color: var(--bg-secondary);
             padding: 2rem 0;
-            color: var(--text-secondary);
+            text-align: center;
             margin-top: 3rem;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .footer-bottom {
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.8rem;
+        .footer-links a {
+            color: var(--text-secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .developer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .developer-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .developer-details {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .developer-image {
-                width: 150px;
-                height: 150px;
+            .developer-content h1 {
+                font-size: 2rem;
             }
-            
-            .developer-section h1 {
+
+            .developer-content h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .developer-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .developer-content h1 {
                 font-size: 1.8rem;
             }
         }
@@ -242,68 +310,67 @@
                     <p>Daily Essentials for Every Nepali</p>
                 </div>
             </div>
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> Back to Home
-            </a>
+            <a href="index.html" class="btn">Back to Home</a>
         </div>
     </header>
 
-    <main class="developer-section">
-        <div class="container developer-container">
-            <img src="https://i.ibb.co/BVZ0Y9Dc/Yellow-and-Black-Simple-Professional-Linked-In-Profile-Picture.png" alt="Siddha Batala" class="developer-image">
-            <h1>Siddha Batala</h1>
-            <p class="developer-title">Creator of Hamro Utility</p>
-            
-            <div class="developer-bio">
-                <p>Hello! I'm Siddha Batala, the developer behind Hamro Utility. Originally from Lamki, Kailali and now based in Kathmandu, I created this platform to provide essential daily tools for Nepali people in one convenient place.</p>
-                <p>Coming from a non-technical background, I taught myself coding to build solutions for everyday problems. Hamro Utility is my way of contributing to our community by making useful tools accessible to everyone.</p>
-                <p>My goal is to keep improving Hamro Utility with more features while maintaining its simplicity and speed, especially for users with limited internet access.</p>
+    <main>
+        <section class="developer-hero">
+            <div class="container">
+                <div class="developer-container">
+                    <div class="developer-image">
+                        <img src="https://i.ibb.co/BVZ0Y9Dc/Yellow-and-Black-Simple-Professional-Linked-In-Profile-Picture.png" alt="Siddha Batala">
+                    </div>
+                    <div class="developer-content">
+                        <h1>Siddha Batala</h1>
+                        <h2>Creator of Hamro Utility</h2>
+                        
+                        <div class="developer-bio">
+                            <p>Hi, I'm Siddha Batala, the developer behind Hamro Utility. Originally from Lamki, Kailali and currently based in Kathmandu, I come from a non-developer background but have a strong passion for coding, technology, and learning new things every day.</p>
+                            <p>My journey into programming began as a hobby, but it quickly turned into a passion as I discovered the power of technology to solve everyday problems. Hamro Utility was born out of my desire to create useful tools that make life easier for Nepali people.</p>
+                            <p>As a self-taught developer, I believe in continuous learning and improvement. Every day presents an opportunity to grow, and I'm excited to keep building tools that serve our community.</p>
+                        </div>
+                        
+                        <div class="developer-details">
+                            <div class="detail-card">
+                                <h3>From</h3>
+                                <p>Lamki, Kailali, Nepal</p>
+                            </div>
+                            <div class="detail-card">
+                                <h3>Currently</h3>
+                                <p>Kathmandu, Nepal</p>
+                            </div>
+                            <div class="detail-card">
+                                <h3>Background</h3>
+                                <p>Self-Taught Developer</p>
+                            </div>
+                            <div class="detail-card">
+                                <h3>Passion</h3>
+                                <p>Building Useful Tools</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="developer-contact">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>sidbatala@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>9803282511</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Kathmandu, Nepal</span>
-                </div>
-                
-                <div class="social-links">
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h3>Hamro Utility</h3>
-                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
-                </div>
-                <div>
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#tools">Tools</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
-            </div>
+            <p class="copyright">&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
         </div>
     </footer>
 
@@ -312,34 +379,39 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // Dark mode toggle functionality
-        const darkModeToggle = document.createElement('button');
-        darkModeToggle.id = 'darkModeToggle';
-        darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        
-        const headerActions = document.querySelector('header .container');
-        if (headerActions) {
-            headerActions.appendChild(darkModeToggle);
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
         }
 
-        darkModeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        // Simple theme toggle for this page
+        const toggleTheme = () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        };
+
+        // Add theme toggle button if needed
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header .container');
+            const themeBtn = document.createElement('button');
+            themeBtn.id = 'themeToggle';
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            themeBtn.style.marginLeft = '1rem';
+            themeBtn.style.fontSize = '1.2rem';
+            themeBtn.style.cursor = 'pointer';
+            themeBtn.style.background = 'none';
+            themeBtn.style.border = 'none';
+            themeBtn.style.color = 'var(--text-primary)';
+            themeBtn.addEventListener('click', toggleTheme);
+            header.appendChild(themeBtn);
+
+            // Update icon based on current theme
+            if (savedTheme === 'dark') {
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
             }
         });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
     </script>
 </body>
 </html>
