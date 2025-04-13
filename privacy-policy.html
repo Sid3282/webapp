@@ -4,194 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Hamro Utility</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #D32F2F;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-color: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --border-color: #E0E0E0;
+            --font-primary: 'Poppins', sans-serif;
+            --radius-md: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #D32F2F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --bg-color: #121212;
+            --bg-secondary: #1E1E1E;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-top: 70px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
+        <div class="header-content">
             <div class="logo">
-                <h1>Hamro Utility</h1>
-                <p>Daily Essentials for Every Nepali</p>
+                <img src="https://i.ibb.co/GvyW5RXN/utilities-1.png" alt="Hamro Utility Logo">
+                <span>Hamro Utility</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#tools">Tools</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-                <button id="darkModeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+            <a href="index.html" class="btn">Back to Home</a>
         </div>
     </header>
 
     <main>
-        <section class="policy-section">
-            <div class="container">
-                <div class="policy-header">
-                    <h1>Privacy Policy</h1>
-                    <p>Last Updated: <span id="current-date"></span></p>
-                </div>
-                
-                <div class="policy-content">
-                    <div class="policy-card">
-                        <h2><i class="fas fa-user-shield"></i> Introduction</h2>
-                        <p>Welcome to Hamro Utility ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services.</p>
-                        <p>By accessing or using Hamro Utility, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, please do not use our services.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-database"></i> Information We Collect</h2>
-                        <p>We may collect the following types of information:</p>
-                        <ul>
-                            <li><strong>Personal Information:</strong> When you contact us or provide feedback, we may collect your name, email address, and other contact details.</li>
-                            <li><strong>Usage Data:</strong> We automatically collect information about how you interact with our website, including pages visited, time spent, and device information.</li>
-                            <li><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance your experience and analyze site usage.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-lock"></i> How We Use Your Information</h2>
-                        <p>We use the collected information for various purposes:</p>
-                        <ul>
-                            <li>To provide and maintain our services</li>
-                            <li>To improve and personalize your experience</li>
-                            <li>To respond to your inquiries and provide support</li>
-                            <li>To analyze usage trends and optimize our website</li>
-                            <li>To detect and prevent technical issues</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-share-alt"></i> Data Sharing and Disclosure</h2>
-                        <p>We do not sell or rent your personal information to third parties. However, we may share information in the following situations:</p>
-                        <ul>
-                            <li><strong>Service Providers:</strong> With trusted third parties who assist us in operating our website and services.</li>
-                            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and safety.</li>
-                            <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-shield-alt"></i> Data Security</h2>
-                        <p>We implement appropriate security measures to protect your information. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-cookie-bite"></i> Cookies and Tracking Technologies</h2>
-                        <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-globe"></i> Third-Party Links</h2>
-                        <p>Our website may contain links to third-party websites. We have no control over and assume no responsibility for the content or practices of these sites.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-child"></i> Children's Privacy</h2>
-                        <p>Our services are not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-edit"></i> Changes to This Policy</h2>
-                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last Updated" date.</p>
-                    </div>
-                    
-                    <div class="policy-card">
-                        <h2><i class="fas fa-envelope"></i> Contact Us</h2>
-                        <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-                        <p><strong>Email:</strong> privacy@hamroutility.com</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p>Last Updated: <span id="current-date"></span></p>
+
+            <h2>1. Information We Collect</h2>
+            <p>Hamro Utility collects minimal data to provide our services:</p>
+            <ul>
+                <li><strong>Usage Data:</strong> We collect anonymous usage statistics to improve our services.</li>
+                <li><strong>Form Submissions:</strong> Information you voluntarily provide through contact forms or feedback.</li>
+                <li><strong>Cookies:</strong> We use essential cookies for basic functionality.</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We use collected information to:</p>
+            <ul>
+                <li>Provide and maintain our services</li>
+                <li>Improve user experience</li>
+                <li>Respond to inquiries and feedback</li>
+                <li>Analyze usage patterns</li>
+            </ul>
+
+            <h2>3. Data Protection</h2>
+            <p>We implement appropriate security measures to protect your information. However, no internet transmission is 100% secure.</p>
+
+            <h2>4. Third-Party Services</h2>
+            <p>We use these third-party services that may collect data:</p>
+            <ul>
+                <li><strong>Google Analytics:</strong> For anonymous usage statistics</li>
+                <li><strong>Calendar Widgets:</strong> From ashesh.com.np for Nepali calendar features</li>
+            </ul>
+
+            <h2>5. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal data</li>
+                <li>Request correction or deletion</li>
+                <li>Opt-out of data collection</li>
+            </ul>
+
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update this policy periodically. We'll notify you of significant changes by posting the new policy on this page.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>For questions about this policy, contact us at <a href="mailto:sidbatala@gmail.com">sidbatala@gmail.com</a></p>
+        </div>
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Hamro Utility</h3>
-                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="privacy-policy.html" class="active">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#tools">Tools</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
-            </div>
+            <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         // Set current date and year
         document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { 
-            year: 'numeric', month: 'long', day: 'numeric' 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
         });
         document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Dark mode toggle (reuse from main script.js)
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        if (darkModeToggle) {
-            darkModeToggle.addEventListener('click', () => {
-                document.body.setAttribute('data-theme', 
-                    document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-                
-                const icon = darkModeToggle.querySelector('i');
-                if (document.body.getAttribute('data-theme') === 'dark') {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-                
-                localStorage.setItem('theme', document.body.getAttribute('data-theme'));
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.body.setAttribute('data-theme', savedTheme);
-                const icon = darkModeToggle.querySelector('i');
-                if (savedTheme === 'dark') {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                }
-            }
-        }
-        
-        // Mobile menu toggle (simplified version)
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav');
-        if (mobileMenuBtn && nav) {
-            mobileMenuBtn.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
-            });
+
+        // Dark mode support
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
         }
     </script>
 </body>
