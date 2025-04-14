@@ -3,246 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | Hamro Utility</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Page Not Found - Hamro Utility</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #D32F2F;
-            --primary-light: #FF6659;
-            --secondary-color: #FFD700;
-            --bg-color: #FFFFFF;
-            --text-primary: #212121;
-            --text-secondary: #757575;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #D32F2F;
-            --primary-light: #FF6659;
-            --secondary-color: #FFD700;
-            --bg-color: #121212;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B0B0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .error-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            text-align: center;
             padding: 2rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .error-container {
             max-width: 800px;
-            width: 100%;
+            margin: 0 auto;
         }
-
-        .error-illustration {
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-
-        .error-illustration svg {
-            width: 100%;
+        
+        .error-image {
+            max-width: 100%;
             height: auto;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-        }
-
-        .error-illustration .astronaut {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .error-illustration .planet {
-            animation: spin 40s linear infinite;
-            transform-origin: center;
-        }
-
-        .error-illustration .stars {
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-
-        .error-content {
-            margin-top: 2rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
+            max-height: 60vh;
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
         }
-
+        
+        .error-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        h1 {
+            color: #d32f2f;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
+            padding: 0.8rem 1.8rem;
+            background-color: #d32f2f;
             color: white;
-            border-radius: 50px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
-            margin: 0.5rem;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
+        
         .btn:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
+        
+        .btn i {
+            margin-right: 8px;
         }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
+        
+        footer {
+            padding: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            from { opacity: 0.7; }
-            to { opacity: 1; }
-        }
-
+        
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             p {
                 font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.4rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="error-container">
-        <div class="error-illustration">
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background Space -->
-                <rect width="800" height="600" fill="#0B0E23" data-theme="dark"/>
-                <rect width="800" height="600" fill="#F5F7FF" data-theme="light"/>
-                
-                <!-- Stars -->
-                <g class="stars" fill="#FFF">
-                    <circle cx="100" cy="80" r="1.5"/>
-                    <circle cx="700" cy="120" r="2"/>
-                    <circle cx="300" cy="50" r="1"/>
-                    <circle cx="500" cy="200" r="1.5"/>
-                    <circle cx="200" cy="250" r="1"/>
-                    <circle cx="650" cy="300" r="2"/>
-                    <circle cx="400" cy="400" r="1"/>
-                    <circle cx="150" cy="500" r="1.5"/>
-                    <circle cx="750" cy="550" r="1"/>
-                </g>
-                
-                <!-- Planet -->
-                <circle class="planet" cx="600" cy="300" r="120" fill="#4A5FC1" data-theme="dark"/>
-                <circle class="planet" cx="600" cy="300" r="120" fill="#E2E5FF" data-theme="light"/>
-                <circle cx="650" cy="250" r="30" fill="#3A4BAF" data-theme="dark"/>
-                <circle cx="650" cy="250" r="30" fill="#D0D5FF" data-theme="light"/>
-                <circle cx="550" cy="350" r="20" fill="#3A4BAF" data-theme="dark"/>
-                <circle cx="550" cy="350" r="20" fill="#D0D5FF" data-theme="light"/>
-                
-                <!-- Astronaut -->
-                <g class="astronaut" transform="translate(200, 250)">
-                    <!-- Helmet -->
-                    <circle cx="0" cy="-30" r="40" fill="#FFF"/>
-                    <circle cx="0" cy="-30" r="35" fill="#E2E5FF" data-theme="light"/>
-                    <circle cx="0" cy="-30" r="35" fill="#2C3A7A" data-theme="dark"/>
-                    <circle cx="-15" cy="-40" r="5" fill="#FFF"/>
-                    <circle cx="15" cy="-40" r="5" fill="#FFF"/>
-                    <path d="M-10,-20 Q0,-25 10,-20" stroke="#FFF" stroke-width="2" fill="none"/>
-                    
-                    <!-- Body -->
-                    <rect x="-25" y="10" width="50" height="60" rx="10" fill="#FFF"/>
-                    <rect x="-20" y="15" width="40" height="50" rx="8" fill="#E2E5FF" data-theme="light"/>
-                    <rect x="-20" y="15" width="40" height="50" rx="8" fill="#2C3A7A" data-theme="dark"/>
-                    
-                    <!-- Arms -->
-                    <rect x="-45" y="20" width="20" height="40" rx="10" fill="#FFF"/>
-                    <rect x="25" y="20" width="20" height="40" rx="10" fill="#FFF"/>
-                    
-                    <!-- Legs -->
-                    <rect x="-25" y="70" width="20" height="40" rx="10" fill="#FFF"/>
-                    <rect x="5" y="70" width="20" height="40" rx="10" fill="#FFF"/>
-                    
-                    <!-- Oxygen tank -->
-                    <rect x="-50" y="0" width="15" height="80" rx="7" fill="#D32F2F"/>
-                    <rect x="-50" y="0" width="15" height="20" rx="7" fill="#FFF" opacity="0.3"/>
-                </g>
-                
-                <!-- 404 Text -->
-                <text x="400" y="500" font-size="120" font-weight="700" text-anchor="middle" fill="#D32F2F">404</text>
-                <text x="400" y="540" font-size="24" text-anchor="middle" fill="#757575" data-theme="light">Houston, we have a problem!</text>
-                <text x="400" y="540" font-size="24" text-anchor="middle" fill="#B0B0B0" data-theme="dark">Houston, we have a problem!</text>
-            </svg>
-        </div>
-        
-        <div class="error-content">
-            <h1>Lost in Space</h1>
-            <p>The page you're looking for has drifted off into the cosmos. Don't worry, our team of cosmic utility experts can help you find your way back home.</p>
-            <div>
-                <a href="/" class="btn">Return to Earth</a>
-                <a href="/contact" class="btn btn-outline">Report Missing Page</a>
-            </div>
-        </div>
+        <img src="https://i.ibb.co/Xrpx1nPT/404-Error-Page-not-Found-with-people-connecting-a-plug-amico.png" 
+             alt="404 Error - Page not found illustration" 
+             class="error-image">
+        <h1>Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="btn">
+            <i class="fas fa-home"></i> Return to Homepage
+        </a>
     </div>
+    
+    <footer>
+        &copy; <span id="current-year"></span> Hamro Utility. All rights reserved.
+    </footer>
 
     <script>
-        // Dark mode toggle functionality
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        const currentTheme = localStorage.getItem('theme');
-        
-        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-            document.body.setAttribute('data-theme', 'dark');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-        }
-        
-        // Animate the astronaut on hover
-        const astronaut = document.querySelector('.astronaut');
-        astronaut.addEventListener('mouseover', () => {
-            astronaut.style.animation = 'float 2s ease-in-out infinite';
-        });
-        
-        astronaut.addEventListener('mouseout', () => {
-            astronaut.style.animation = 'float 6s ease-in-out infinite';
-        });
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
