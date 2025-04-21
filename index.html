@@ -101,8 +101,7 @@
                         </div>
                         <div class="content">
                             <h3>Date</h3>
-                            <p class="date-ad">Loading...</p>
-                            <p class="date-bs">Loading...</p>
+                            <iframe scrolling="no" border="0" frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" src="https://www.ashesh.com.np/linknepali-time.php?time_only=no&font_color=333333&aj_time=yes&font_size=14&line_brake=1&api=132243p179" width="195" height="45"></iframe>
                         </div>
                     </div>
                     <div class="snapshot-card">
@@ -288,22 +287,25 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="feedbackForm">
+                        <form action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="d2575a55-86d0-47cc-9a8f-29970efa6d84">
+                            <input type="hidden" name="redirect" value="https://hamroutility.com/thank-you.html">
+                            
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" required>
+                                <input type="text" id="name" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" required>
+                                <input type="email" id="email" name="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input type="text" id="subject" required>
+                                <input type="text" id="subject" name="subject" required>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" rows="5" required></textarea>
+                                <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
                             <button type="submit" class="btn">Send Message</button>
                         </form>
@@ -319,7 +321,6 @@
                 <div class="footer-col">
                     <h3>Hamro Utility</h3>
                     <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
-                    <a href="about-developer.html" class="btn btn-outline btn-sm">About Developer</a>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
@@ -361,6 +362,7 @@
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-service.html">Terms of Service</a>
                     <a href="about-developer.html">About Developer</a>
+
                 </div>
             </div>
         </div>
