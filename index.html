@@ -130,8 +130,11 @@
                         </div>
                         <div class="content">
                             <h3>Weather</h3>
-                            <p class="weather-temp">Loading...</p>
-                            <p class="weather-desc">Loading...</p>
+                            <div class="weather-info">
+                                <p class="weather-temp">Loading...</p>
+                                <p class="weather-desc">Loading...</p>
+                                <p class="weather-location">Kathmandu</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,7 +365,6 @@
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-service.html">Terms of Service</a>
                     <a href="about-developer.html">About Developer</a>
-
                 </div>
             </div>
         </div>
@@ -372,6 +374,43 @@
     <script src="script.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Weather API Integration
+        const apiKey = '55714597e97df7446072b3eddd3b93e0';
+        const city = 'Kathmandu';
+        
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const weatherTemp = document.querySelector('.weather-temp');
+                const weatherDesc = document.querySelector('.weather-desc');
+                const weatherIcon = document.createElement('img');
+                
+                // Convert temperature to Celsius (already in metric units)
+                const temp = Math.round(data.main.temp);
+                
+                // Get weather description and capitalize first letter
+                const description = data.weather[0].description;
+                const capitalizedDesc = description.charAt(0).toUpperCase() + description.slice(1);
+                
+                // Set weather icon
+                const iconCode = data.weather[0].icon;
+                weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
+                weatherIcon.alt = description;
+                weatherIcon.className = 'weather-icon';
+                
+                // Update DOM
+                weatherTemp.innerHTML = `${temp}°C`;
+                weatherDesc.textContent = capitalizedDesc;
+                
+                // Insert icon before temperature
+                weatherTemp.parentNode.insertBefore(weatherIcon, weatherTemp);
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+                document.querySelector('.weather-temp').textContent = 'N/A';
+                document.querySelector('.weather-desc').textContent = 'Weather data unavailable';
+            });
     </script>
 </body>
 </html>
