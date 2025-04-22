@@ -9,6 +9,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="https://i.ibb.co/GvyW5RXN/utilities-1.png" type="image/x-icon">
+    <style>
+        .weather-icon {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .forex-rate {
+            display: flex;
+            justify-content: space-between;
+        }
+        .forex-rate span {
+            display: inline-block;
+        }
+        .forex-rate .currency-code {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -119,9 +137,18 @@
                             <i class="fas fa-dollar-sign"></i>
                         </div>
                         <div class="content">
-                            <h3>Forex</h3>
-                            <p class="usd-rate">Loading...</p>
-                            <p class="inr-rate">Loading...</p>
+                            <h3>Forex Rates</h3>
+                            <div class="forex-rates">
+                                <div class="forex-rate">
+                                    <span class="currency-code">USD:</span>
+                                    <span class="usd-rate">Loading...</span>
+                                </div>
+                                <div class="forex-rate">
+                                    <span class="currency-code">EUR:</span>
+                                    <span class="eur-rate">Loading...</span>
+                                </div>
+                                <p class="forex-update">NRB Exchange Rate</p>
+                            </div>
                         </div>
                     </div>
                     <div class="snapshot-card">
@@ -131,6 +158,7 @@
                         <div class="content">
                             <h3>Weather</h3>
                             <div class="weather-info">
+                                <img class="weather-icon" src="" alt="">
                                 <p class="weather-temp">Loading...</p>
                                 <p class="weather-desc">Loading...</p>
                                 <p class="weather-location">Kathmandu</p>
@@ -371,7 +399,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
@@ -384,7 +411,7 @@
             .then(data => {
                 const weatherTemp = document.querySelector('.weather-temp');
                 const weatherDesc = document.querySelector('.weather-desc');
-                const weatherIcon = document.createElement('img');
+                const weatherIcon = document.querySelector('.weather-icon');
                 
                 // Convert temperature to Celsius (already in metric units)
                 const temp = Math.round(data.main.temp);
@@ -397,19 +424,58 @@
                 const iconCode = data.weather[0].icon;
                 weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
                 weatherIcon.alt = description;
-                weatherIcon.className = 'weather-icon';
                 
                 // Update DOM
                 weatherTemp.innerHTML = `${temp}°C`;
                 weatherDesc.textContent = capitalizedDesc;
-                
-                // Insert icon before temperature
-                weatherTemp.parentNode.insertBefore(weatherIcon, weatherTemp);
             })
             .catch(error => {
                 console.error('Error fetching weather data:', error);
                 document.querySelector('.weather-temp').textContent = 'N/A';
                 document.querySelector('.weather-desc').textContent = 'Weather data unavailable';
+            });
+
+        // Forex API Integration
+        fetch('https://www.nrb.org.np/api/forex/v1/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.data && data.data.payload) {
+                    const forexData = data.data.payload;
+                    
+                    // Find USD and EUR rates
+                    const usdRate = forexData.find(currency => currency.currency.iso3 === 'USD');
+                    const eurRate = forexData.find(currency => currency.currency.iso3 === 'EUR');
+                    
+                    // Update DOM
+                    if (usdRate) {
+                        document.querySelector('.usd-rate').textContent = `Rs. ${usdRate.buy}/ ${usdRate.currency.iso3}`;
+                    }
+                    if (eurRate) {
+                        document.querySelector('.eur-rate').textContent = `Rs. ${eurRate.buy}/ ${eurRate.currency.iso3}`;
+                    }
+                    
+                    // Update timestamp if available
+                    if (data.data.meta) {
+                        const updateTime = new Date(data.data.meta.published_at).toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        document.querySelector('.forex-update').textContent = `Updated: ${updateTime}`;
+                    }
+                } else {
+                    throw new Error('Invalid data format from NRB API');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching forex data:', error);
+                document.querySelector('.usd-rate').textContent = 'N/A';
+                document.querySelector('.eur-rate').textContent = 'N/A';
+                document.querySelector('.forex-update').textContent = 'Data unavailable';
             });
     </script>
 </body>
