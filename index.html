@@ -9,24 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="https://i.ibb.co/GvyW5RXN/utilities-1.png" type="image/x-icon">
-    <style>
-        .weather-icon {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-            margin-right: 5px;
-        }
-        .forex-rate {
-            display: flex;
-            justify-content: space-between;
-        }
-        .forex-rate span {
-            display: inline-block;
-        }
-        .forex-rate .currency-code {
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -114,28 +96,19 @@
                 <h2>Today's Snapshot</h2>
                 <div class="snapshot-grid">
                     <div class="snapshot-card">
-                        <div class="icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
                         <div class="content">
                             <h3>Date & Time</h3>
                             <iframe scrolling="no" border="0" frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" src="https://www.ashesh.com.np/linknepali-time.php?time_only=no&font_color=333333&aj_time=yes&font_size=14&line_brake=1&api=132243p179" width="195" height="45"></iframe>
                         </div>
                     </div>
                     <div class="snapshot-card">
-                        <div class="icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
                         <div class="content">
                             <h3>Gold Price</h3>
-                            <p class="gold-price">Loading...</p>
-                            <p class="gold-change">Loading...</p>
+                            <p class="gold-price">24K: <span id="gold-price-24k">Loading...</span></p>
+                            <p class="gold-change"><span id="gold-change-24k"></span></p>
                         </div>
                     </div>
                     <div class="snapshot-card">
-                        <div class="icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
                         <div class="content">
                             <h3>Forex Rates</h3>
                             <div class="forex-rates">
@@ -152,9 +125,6 @@
                         </div>
                     </div>
                     <div class="snapshot-card">
-                        <div class="icon">
-                            <i class="fas fa-cloud-sun"></i>
-                        </div>
                         <div class="content">
                             <h3>Weather</h3>
                             <div class="weather-info">
@@ -175,56 +145,56 @@
                 <div class="tools-grid">
                     <a href="date-converter.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-calendar-day"></i>
+                            <img src="https://i.ibb.co/vxh4ZJ56/deadline-14354278.png" alt="Date Converter" class="custom-icon">
                         </div>
                         <h3>Date Converter</h3>
                         <p>Convert between AD and BS dates</p>
                     </a>
                     <a href="calendar.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-calendar"></i>
+                            <img src="https://i.ibb.co/vxh4ZJ56/deadline-14354278.png" alt="Calendar" class="custom-icon">
                         </div>
                         <h3>Calendar</h3>
                         <p>Nepali calendar with events</p>
                     </a>
                     <a href="gold-price.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-coins"></i>
+                            <img src="https://i.ibb.co/V0Ty4WB2/gold-15751000.png" alt="Gold Price" class="custom-icon">
                         </div>
                         <h3>Gold Price</h3>
                         <p>Today's gold rates in Nepal</p>
                     </a>
                     <a href="forex.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-exchange-alt"></i>
+                            <img src="https://i.ibb.co/Nd7xzqXr/currency-exchange-7169285.png" alt="Forex Rates" class="custom-icon">
                         </div>
                         <h3>Forex Rates</h3>
                         <p>Currency exchange rates</p>
                     </a>
                     <a href="weather.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-cloud-sun"></i>
+                            <img src="https://i.ibb.co/PsrYBgR6/weather-1243442.png" alt="Weather" class="custom-icon">
                         </div>
                         <h3>Weather</h3>
                         <p>Weather forecast for Nepal</p>
                     </a>
                     <a href="astro.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-star"></i>
+                            <img src="https://i.ibb.co/rGNrj16y/orbit-7027211.png" alt="Astro Summary" class="custom-icon">
                         </div>
                         <h3>Astro Summary</h3>
                         <p>Daily astrological information</p>
                     </a>
                     <a href="unit-converter.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-ruler-combined"></i>
+                            <img src="https://i.ibb.co/WvznMfwx/transfer-9201169.png" alt="Unit Converter" class="custom-icon">
                         </div>
                         <h3>Unit Converter</h3>
                         <p>Convert various measurements</p>
                     </a>
                     <a href="nepali-unicode.html" class="tool-card">
                         <div class="icon">
-                            <i class="fas fa-keyboard"></i>
+                            <img src="https://i.ibb.co/TqK54wkQ/communication-13573106.png" alt="Nepali Typing" class="custom-icon">
                         </div>
                         <h3>Nepali Typing</h3>
                         <p>Type in Nepali Unicode</p>
@@ -318,7 +288,7 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form action="https://api.web3forms.com/submit" method="POST">
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
                             <input type="hidden" name="access_key" value="d2575a55-86d0-47cc-9a8f-29970efa6d84">
                             <input type="hidden" name="redirect" value="https://hamroutility.com/thank-you.html">
                             
@@ -339,6 +309,7 @@
                                 <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
                             <button type="submit" class="btn">Send Message</button>
+                            <div id="form-message" class="form-message"></div>
                         </form>
                     </div>
                 </div>
@@ -384,6 +355,7 @@
                     <form id="newsletterForm">
                         <input type="email" placeholder="Your email" required>
                         <button type="submit" class="btn">Subscribe</button>
+                        <div id="newsletter-message" class="form-message"></div>
                     </form>
                 </div>
             </div>
@@ -399,84 +371,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Weather API Integration
-        const apiKey = '55714597e97df7446072b3eddd3b93e0';
-        const city = 'Kathmandu';
-        
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-            .then(response => response.json())
-            .then(data => {
-                const weatherTemp = document.querySelector('.weather-temp');
-                const weatherDesc = document.querySelector('.weather-desc');
-                const weatherIcon = document.querySelector('.weather-icon');
-                
-                // Convert temperature to Celsius (already in metric units)
-                const temp = Math.round(data.main.temp);
-                
-                // Get weather description and capitalize first letter
-                const description = data.weather[0].description;
-                const capitalizedDesc = description.charAt(0).toUpperCase() + description.slice(1);
-                
-                // Set weather icon
-                const iconCode = data.weather[0].icon;
-                weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
-                weatherIcon.alt = description;
-                
-                // Update DOM
-                weatherTemp.innerHTML = `${temp}°C`;
-                weatherDesc.textContent = capitalizedDesc;
-            })
-            .catch(error => {
-                console.error('Error fetching weather data:', error);
-                document.querySelector('.weather-temp').textContent = 'N/A';
-                document.querySelector('.weather-desc').textContent = 'Weather data unavailable';
-            });
-
-        // Forex API Integration
-        fetch('https://www.nrb.org.np/api/forex/v1/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.data && data.data.payload) {
-                    const forexData = data.data.payload;
-                    
-                    // Find USD and EUR rates
-                    const usdRate = forexData.find(currency => currency.currency.iso3 === 'USD');
-                    const eurRate = forexData.find(currency => currency.currency.iso3 === 'EUR');
-                    
-                    // Update DOM
-                    if (usdRate) {
-                        document.querySelector('.usd-rate').textContent = `Rs. ${usdRate.buy}/ ${usdRate.currency.iso3}`;
-                    }
-                    if (eurRate) {
-                        document.querySelector('.eur-rate').textContent = `Rs. ${eurRate.buy}/ ${eurRate.currency.iso3}`;
-                    }
-                    
-                    // Update timestamp if available
-                    if (data.data.meta) {
-                        const updateTime = new Date(data.data.meta.published_at).toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
-                        document.querySelector('.forex-update').textContent = `Updated: ${updateTime}`;
-                    }
-                } else {
-                    throw new Error('Invalid data format from NRB API');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching forex data:', error);
-                document.querySelector('.usd-rate').textContent = 'N/A';
-                document.querySelector('.eur-rate').textContent = 'N/A';
-                document.querySelector('.forex-update').textContent = 'Data unavailable';
-            });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
