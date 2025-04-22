@@ -11,7 +11,7 @@ const swapDatesBtn = document.getElementById('swap-dates');
 const conversionResult = document.getElementById('conversion-result');
 const calculateGoldBtn = document.getElementById('calculate-gold');
 const goldResult = document.getElementById('gold-result');
-const feedbackForm = document.getElementById('feedbackForm');
+const contactForm = document.getElementById('contactForm');
 const newsletterForm = document.getElementById('newsletterForm');
 
 // Current Date Elements
@@ -24,7 +24,7 @@ const goldChange22k = document.getElementById('gold-change-22k');
 const silverPrice = document.getElementById('silver-price');
 const silverChange = document.getElementById('silver-change');
 const usdRate = document.querySelector('.usd-rate');
-const inrRate = document.querySelector('.inr-rate');
+const eurRate = document.querySelector('.eur-rate');
 const weatherTemp = document.querySelector('.weather-temp');
 const weatherDesc = document.querySelector('.weather-desc');
 
@@ -321,46 +321,120 @@ function calculateGoldValue() {
 
 // Initialize Forex Rates
 function initForexRates() {
-    // Mock data - in a real app, this would come from an API
-    const forexData = {
-        usd: "USD 1 = Rs. 132.50",
-        inr: "INR 1 = Rs. 1.60",
-        updateTime: new Date().toLocaleTimeString()
-    };
-    
-    // Update UI
-    usdRate.textContent = forexData.usd;
-    inrRate.textContent = forexData.inr;
+    fetch('https://www.nrb.org.np/api/forex/v1/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.data && data.data.payload) {
+                const forexData = data.data.payload;
+                
+                // Find USD and EUR rates
+                const usd = forexData.find(currency => currency.currency.iso3 === 'USD');
+                const eur = forexData.find(currency => currency.currency.iso3 === 'EUR');
+                
+                // Update UI
+                if (usd) {
+                    usdRate.textContent = `Rs. ${usd.buy}`;
+                }
+                if (eur) {
+                    eurRate.textContent = `Rs. ${eur.buy}`;
+                }
+                
+                // Update timestamp if available
+                if (data.data.meta) {
+                    const updateTime = new Date(data.data.meta.published_at).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    document.querySelector('.forex-update').textContent = `Updated: ${updateTime}`;
+                }
+            } else {
+                throw new Error('Invalid data format from NRB API');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching forex data:', error);
+            usdRate.textContent = 'N/A';
+            eurRate.textContent = 'N/A';
+            document.querySelector('.forex-update').textContent = 'Data unavailable';
+        });
 }
 
 // Initialize Weather
 function initWeather() {
-    // Mock data - in a real app, this would come from an API
-    const weatherData = {
-        temp: "25°C",
-        desc: "Partly Cloudy",
-        updateTime: new Date().toLocaleTimeString()
-    };
+    const apiKey = '55714597e97df7446072b3eddd3b93e0';
+    const city = 'Kathmandu';
     
-    // Update UI
-    weatherTemp.textContent = weatherData.temp;
-    weatherDesc.textContent = weatherData.desc;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const weatherTemp = document.querySelector('.weather-temp');
+            const weatherDesc = document.querySelector('.weather-desc');
+            const weatherIcon = document.querySelector('.weather-icon');
+            
+            // Convert temperature to Celsius (already in metric units)
+            const temp = Math.round(data.main.temp);
+            
+            // Get weather description and capitalize first letter
+            const description = data.weather[0].description;
+            const capitalizedDesc = description.charAt(0).toUpperCase() + description.slice(1);
+            
+            // Set weather icon
+            const iconCode = data.weather[0].icon;
+            weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
+            weatherIcon.alt = description;
+            
+            // Update DOM
+            weatherTemp.innerHTML = `${temp}°C`;
+            weatherDesc.textContent = capitalizedDesc;
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            document.querySelector('.weather-temp').textContent = 'N/A';
+            document.querySelector('.weather-desc').textContent = 'Weather data unavailable';
+        });
 }
 
 // Form Submissions
-if (feedbackForm) {
-    feedbackForm.addEventListener('submit', (e) => {
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Thank you for your feedback! We will get back to you soon.');
-        feedbackForm.reset();
+        const formMessage = document.getElementById('form-message');
+        
+        // Simulate form submission
+        setTimeout(() => {
+            formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+            formMessage.className = 'form-message success';
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }, 1000);
     });
 }
 
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Thank you for subscribing to our newsletter!');
-        newsletterForm.reset();
+        const newsletterMessage = document.getElementById('newsletter-message');
+        
+        // Simulate form submission
+        setTimeout(() => {
+            newsletterMessage.textContent = 'Thank you for subscribing to our newsletter!';
+            newsletterMessage.className = 'form-message success';
+            newsletterForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                newsletterMessage.style.display = 'none';
+            }, 5000);
+        }, 1000);
     });
 }
 
@@ -370,6 +444,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initGoldPriceTracker();
     initForexRates();
     initWeather();
+    
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -389,11 +466,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// In a real implementation, you would also:
-// 1. Add proper date conversion logic using a library like bs-converter
-// 2. Fetch real gold prices from an API
-// 3. Fetch real forex rates from an API
-// 4. Fetch real weather data from an API
-// 5. Implement proper Nepali language support
-// 6. Add more tools and functionality
