@@ -169,6 +169,35 @@ button, input, select, textarea {
 .mb-3 { margin-bottom: 1.5rem; }
 .mb-4 { margin-bottom: 2rem; }
 
+.form-message {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.form-message.success {
+  display: block;
+  background-color: rgba(56, 142, 60, 0.1);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
+.form-message.error {
+  display: block;
+  background-color: rgba(211, 47, 47, 0.1);
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+
+/* Custom icons */
+.custom-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
 /* ================ */
 /* HEADER & NAVIGATION */
 /* ================ */
@@ -442,9 +471,7 @@ nav a:hover::after {
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+  text-align: center;
 }
 
 .snapshot-card:hover {
@@ -452,21 +479,10 @@ nav a:hover::after {
   box-shadow: var(--shadow-md);
 }
 
-.snapshot-card .icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(211, 47, 47, 0.1);
-  border-radius: 50%;
-}
-
 .snapshot-card .content h3 {
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .snapshot-card .content p {
@@ -474,11 +490,12 @@ nav a:hover::after {
   color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
+
 .weather-icon {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 /* ================ */
@@ -509,12 +526,6 @@ nav a:hover::after {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary-color);
-}
-
-.tool-card .icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
 }
 
 .tool-card h3 {
@@ -974,3 +985,4 @@ footer {
   .footer-links {
     justify-content: center;
   }
+}
