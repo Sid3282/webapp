@@ -223,6 +223,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
+                    // Floating Calculator Menu
+const calculatorContainer = document.querySelector('.calculator-container');
+const mainIcon = document.querySelector('.main-icon');
+
+// Toggle calculator menu
+mainIcon.addEventListener('click', (e) => {
+  e.stopPropagation();
+  calculatorContainer.classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.calculator-container')) {
+    calculatorContainer.classList.remove('active');
+  }
+});
+
+// Prevent menu from closing when clicking on menu items
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+});
                 });
             }
         });
