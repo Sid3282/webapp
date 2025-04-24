@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Nepali Typing: Unicode vs Preeti - Hamro Utility</title>
+    <meta name="description" content="Learn the differences between Nepali Unicode and Preeti fonts, and master Nepali typing with these practical tips and tricks.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co/GvyW5RXN/utilities-1.png" type="image/x-icon">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #e0e0e0;
+            --dark-bg: #1a1a1a;
+            --dark-text: #f0f0f0;
+            --dark-secondary: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Blog Post Styles */
+        .blog-post {
+            padding: 40px 0;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .breadcrumb {
+            color: #aaa;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .blog-post-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 30px;
+        }
+
+        body.dark-mode .blog-post-meta {
+            color: #aaa;
+        }
+
+        .blog-post-image {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .blog-post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .blog-post-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        body.dark-mode .intro {
+            color: var(--dark-text);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--text-color);
+        }
+
+        body.dark-mode h2 {
+            color: var(--dark-text);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .typing-tip {
+            background-color: #f0f7ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        body.dark-mode .typing-tip {
+            background-color: #2a3a4a;
+        }
+
+        .typing-tip h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        body.dark-mode .comparison-table th,
+        body.dark-mode .comparison-table td {
+            border-bottom: 1px solid #444;
+        }
+
+        .comparison-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        body.dark-mode .comparison-table th {
+            background-color: #2d2d2d;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-family: 'Preeti', 'Arial Unicode MS', sans-serif;
+        }
+
+        body.dark-mode .example-box {
+            background-color: #2d2d2d;
+        }
+
+        .unicode-example {
+            font-family: 'Arial Unicode MS', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .preeti-example {
+            font-family: 'Preeti', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .comparison-column {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .comparison-column {
+            background: #2d2d2d;
+        }
+
+        .comparison-column h3 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Related Blogs */
+        .related-blogs {
+            margin-top: 60px;
+        }
+
+        .related-blogs h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode .blog-card {
+            background-color: var(--dark-secondary);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-excerpt {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .blog-excerpt {
+            color: #aaa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3a5bef;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        body.dark-mode footer {
+            background-color: #252525;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        body.dark-mode .footer-col h3 {
+            color: var(--dark-text);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .footer-col a {
+            color: #aaa;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-top: 1px solid #444;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-post-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .blog-post-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .comparison {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-post-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="blog-post">
+        <div class="container">
+            <article>
+                <div class="blog-post-header">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> &gt; <a href="blogs.html">Blogs</a> &gt; <span>Nepali Typing</span>
+                    </div>
+                    <h1>Mastering Nepali Typing: Unicode vs Preeti</h1>
+                    <div class="blog-post-meta">
+                        <span class="author">By Hamro Utility Team</span>
+                        <span class="date">Posted on <time datetime="2023-04-15">April 15, 2023</time></span>
+                        <span class="reading-time">6 min read</span>
+                    </div>
+                </div>
+                
+                <div class="blog-post-image">
+                    <img src="https://i.ibb.co/C3NFBb2f/Chat-GPT-Image-Apr-24-2025-01-34-49-PM.png" alt="Nepali Typing Keyboard" loading="lazy">
+                </div>
+                
+                <div class="blog-post-content">
+                    <p class="intro">Nepali typing has evolved significantly with the introduction of Unicode standards, but many still use the traditional Preeti font. This guide explains the differences between these systems and provides practical tips for efficient Nepali typing in both formats.</p>
+                    
+                    <h2>Unicode vs Preeti: Key Differences</h2>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Unicode</th>
+                                <th>Preeti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Standard</td>
+                                <td>International standard</td>
+                                <td>Nepal-specific</td>
+                            </tr>
+                            <tr>
+                                <td>Compatibility</td>
+                                <td>Works everywhere</td>
+                                <td>Requires font installation</td>
+                            </tr>
+                            <tr>
+                                <td>Typing Method</td>
+                                <td>Phonetic (Roman to Nepali)</td>
+                                <td>Direct key mapping</td>
+                            </tr>
+                            <tr>
+                                <td>Future-proof</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Example</td>
+                                <td class="unicode-example">नेपाल</td>
+                                <td class="preeti-example">cf]nf</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="typing-tip">
+                        <h3>Recommendation:</h3>
+                        <p>For long-term compatibility and ease of use, we recommend switching to Unicode Nepali typing. Most modern devices and platforms support it natively.</p>
+                    </div>
+                    
+                    <h2>Tips and Tricks for Nepali Unicode Typing</h2>
+                    
+                    <h3>1. Combining English with Nepali Text</h3>
+                    <p>Simply put any English text inside curly {} brackets to keep it in English:</p>
+                    <div class="example-box">
+                        <p>Input: yo {mobile} mero ho</p>
+                        <p>Output: यो mobile मेरो हो</p>
+                    </div>
+                    
+                    <h3>2. Phonetically Similar Letters</h3>
+                    <p>Some Nepali letters have case-sensitive mappings:</p>
+                    <ul>
+                        <li><strong>ta = त</strong>, <strong>Ta = ट</strong></li>
+                        <li><strong>tha = थ</strong>, <strong>Tha = ठ</strong></li>
+                        <li><strong>da = द</strong>, <strong>Da = ड</strong></li>
+                        <li><strong>dha = ध</strong>, <strong>Dha = ढ</strong></li>
+                        <li><strong>na = न</strong>, <strong>Na = ण</strong></li>
+                        <li><strong>sha = श</strong>, <strong>Sha = ष</strong></li>
+                    </ul>
+                    <p>For other Nepali letters, the upper or lower case doesn't matter.</p>
+                    
+                    <h3>3. Handling Letter Combinations</h3>
+                    <p>If a Nepali letter gets wrongly combined with the preceding letter, use the slash (/) key to separate:</p>
+                    <div class="example-box">
+                        <p>Input: pratishatko</p>
+                        <p>Output: प्रतिशत्को</p>
+                        <p>Input: pratishat/ko</p>
+                        <p>Output: प्रतिशतको</p>
+                    </div>
+                    
+                    <h3>4. Adding Halanta (्)</h3>
+                    <p>Use backslash (\) at the end of a word to add halanta:</p>
+                    <div class="example-box">
+                        <p>Input: bas</p>
+                        <p>Output: बस</p>
+                        <p>Input: bas\</p>
+                        <p>Output: बस्</p>
+                    </div>
+                    
+                    <h3>5. Special Characters and Combinations</h3>
+                    <ul>
+                        <li><strong>ri^ = रि</strong> (as in प्र)</li>
+                        <li><strong>rr = र्‍</strong> (as in गर्‍य)</li>
+                        <li><strong>rri = ऋ</strong></li>
+                        <li><strong>rree = ॠ</strong></li>
+                        <li><strong>yna = ञ</strong></li>
+                        <li><strong>chha = छ</strong></li>
+                        <li><strong>ksha = क्ष</strong></li>
+                        <li><strong>gya = ज्ञ</strong></li>
+                        <li><strong>* = अनुस्वर</strong> (ं)</li>
+                        <li><strong>** = चन्द्रबिन्दु</strong> (ँ)</li>
+                        <li><strong>om = ॐ</strong></li>
+                    </ul>
+                    
+                    <h2>Preeti Typing Cheat Sheet</h2>
+                    <p>For those still using Preeti font, here are some common character mappings:</p>
+                    <div class="example-box preeti-example">
+                        <p>a = अ, b = ब, c = च, d = द, e = ए, f = फ, g = ग, h = ह, i = इ, j = ज</p>
+                        <p>k = क, l = ल, m = म, n = न, o = ओ, p = प, q = अ, r = र, s = स, t = त</p>
+                        <p>u = उ, v = भ, w = व, x = छ, y = य, z = झ</p>
+                    </div>
+                    
+                    <h2>Converting Between Unicode and Preeti</h2>
+                    <p>If you need to convert text between these formats:</p>
+                    <ol>
+                        <li>Use online conversion tools (many are available)</li>
+                        <li>Install font conversion software</li>
+                        <li>For documents, use "Find and Replace" with character mapping</li>
+                    </ol>
+                    
+                    <div class="typing-tip">
+                        <h3>Pro Tip:</h3>
+                        <p>When typing in Unicode, use a proper Nepali keyboard layout or input method editor (IME) for best results. Many are available as browser extensions or system utilities.</p>
+                    </div>
+                    
+                    <h2>Conclusion</h2>
+                    <p>Whether you choose Unicode or Preeti depends on your needs, but Unicode is clearly the future of Nepali digital content. By mastering these typing techniques, you'll be able to communicate effectively in Nepali across all digital platforms. Practice regularly and refer to this guide whenever you encounter typing challenges.</p>
+                    
+                    <div class="blog-post-footer">
+                        <div class="tags">
+                            <span>Tags:</span>
+                            <a href="#">Nepali Typing</a>
+                            <a href="#">Unicode</a>
+                            <a href="#">Preeti</a>
+                            <a href="#">Nepali Language</a>
+                        </div>
+                        <div class="social-share">
+                            <span>Share:</span>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <section class="related-blogs">
+                <h2>You Might Also Like</h2>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://i.ibb.co/RkSpQ9nd/Chat-GPT-Image-Apr-24-2025-10-36-41-AM.png" alt="Nepali Calendar" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Understanding the Nepali Calendar System</h3>
+                            <p class="blog-excerpt">Learn about the history and significance of the Bikram Sambat calendar system used in Nepal...</p>
+                            <a href="blog-nepali-calendar.html" class="btn btn-outline">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://i.ibb.co/6Y4WQ8J/blog2.jpg" alt="Gold Trading in Nepal" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Gold Trading in Nepal: What You Need to Know</h3>
+                            <p class="blog-excerpt">A comprehensive guide to understanding gold prices, trading practices, and investment tips in Nepal...</p>
+                            <a href="blog-gold-trading.html" class="btn btn-outline">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://i.ibb.co/0mX1y7G/blog5.jpg" alt="Nepali Language" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Preserving the Nepali Language in the Digital Age</h3>
+                            <p class="blog-excerpt">Explore the challenges and solutions for maintaining Nepali language in modern technology...</p>
+                            <a href="blog-nepali-language.html" class="btn btn-outline">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="date-converter.html">Date Converter</a></li>
+                        <li><a href="nepali-unicode.html">Nepali Unicode</a></li>
+                        <li><a href="preeti-to-unicode.html">Preeti to Unicode</a></li>
+                        <li><a href="gold-price.html">Gold Price</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="about-developer.html">About Developer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features and tools.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="about-developer.html">About Developer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+            // Here you would typically send the email to your server
+            alert(`Thank you for subscribing with ${email}!`);
+            newsletterForm.reset();
+        });
+    </script>
+</body>
+</html>
