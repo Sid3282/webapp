@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="https://i.ibb.co/GvyW5RXN/utilities-1.png" type="image/x-icon">
     <style>
+        /* Inline styles for blog content only */
         .blog-article {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1rem;
+            font-family: 'Poppins', sans-serif;
+            color: #212121;
+            line-height: 1.6;
         }
         .blog-header {
             text-align: center;
@@ -21,11 +25,13 @@
         }
         .blog-title {
             font-size: 2.2rem;
-            color: var(--primary-color);
+            color: #D32F2F;
             margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
         }
         .blog-meta {
-            color: var(--text-secondary);
+            color: #757575;
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
@@ -33,18 +39,21 @@
             width: 100%;
             height: 400px;
             object-fit: cover;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             margin: 1.5rem 0;
         }
         .blog-content h2 {
-            color: var(--primary-color);
+            color: #D32F2F;
             margin: 2rem 0 1rem;
             font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.2;
         }
         .blog-content h3 {
-            color: var(--primary-dark);
+            color: #9A0007;
             margin: 1.5rem 0 0.8rem;
             font-size: 1.3rem;
+            font-weight: 600;
         }
         .blog-content p {
             margin-bottom: 1.2rem;
@@ -52,28 +61,61 @@
         }
         .blog-content ul {
             margin: 1rem 0 1.5rem 2rem;
+            list-style-type: disc;
         }
         .blog-content li {
             margin-bottom: 0.5rem;
         }
         .climate-zone {
-            background-color: var(--bg-secondary);
+            background-color: #F5F5F5;
             padding: 1.5rem;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             margin: 1.5rem 0;
         }
         .weather-tip {
             background-color: rgba(255, 215, 0, 0.1);
-            border-left: 4px solid var(--secondary-color);
+            border-left: 4px solid #FFD700;
             padding: 1rem;
             margin: 1.5rem 0;
         }
         .image-caption {
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #757575;
             margin-top: -1rem;
             margin-bottom: 1.5rem;
+        }
+        .blog-navigation {
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.4rem;
+            background-color: #D32F2F;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #9A0007;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .btn-outline {
+            background-color: transparent;
+            border-color: #D32F2F;
+            color: #D32F2F;
+        }
+        .btn-outline:hover {
+            background-color: #D32F2F;
+            color: white;
         }
         @media (max-width: 768px) {
             .blog-title {
