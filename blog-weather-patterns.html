@@ -35,12 +35,18 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
-        .blog-image {
+        .blog-image-container {
             width: 100%;
-            height: 400px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
             object-fit: cover;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            display: inline-block;
         }
         .blog-content h2 {
             color: #D32F2F;
@@ -82,11 +88,12 @@
             text-align: center;
             font-size: 0.9rem;
             color: #757575;
-            margin-top: -1rem;
+            margin-top: 0.5rem;
             margin-bottom: 1.5rem;
         }
         .blog-navigation {
             margin-top: 2rem;
+            text-align: center;
         }
         .btn {
             display: inline-block;
@@ -122,7 +129,7 @@
                 font-size: 1.8rem;
             }
             .blog-image {
-                height: 250px;
+                max-height: 250px;
             }
         }
     </style>
@@ -200,8 +207,10 @@
                     <div class="blog-meta">
                         Posted on <time datetime="2023-03-22">March 22, 2023</time> | Updated: <time datetime="2025-04-24">April 24, 2025</time>
                     </div>
-                    <img src="https://i.ibb.co/bgJvQN9P/Chat-GPT-Image-Apr-24-2025-09-34-20-AM.png" alt="Nepal's diverse weather patterns from Terai to Himalayas" class="blog-image">
-                    <p class="image-caption">Nepal's weather varies dramatically from the tropical Terai to the snow-capped Himalayas.</p>
+                    <div class="blog-image-container">
+                        <img src="https://i.ibb.co/bgJvQN9P/Chat-GPT-Image-Apr-24-2025-09-34-20-AM.png" alt="Nepal's diverse weather patterns from Terai to Himalayas" class="blog-image">
+                        <p class="image-caption">Nepal's weather varies dramatically from the tropical Terai to the snow-capped Himalayas.</p>
+                    </div>
                 </header>
 
                 <div class="blog-content">
