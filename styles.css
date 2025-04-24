@@ -926,6 +926,107 @@ footer {
 }
 
 /* ================ */
+/* FLOATING CALCULATOR MENU */
+/* ================ */
+.calculator-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  z-index: 1000;
+}
+
+.main-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--border-color);
+}
+
+.main-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+.calculator-container.active .menu {
+  pointer-events: all;
+}
+
+.menu-item {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+}
+
+.menu-item img {
+  width: 28px;
+  height: 28px;
+}
+
+.menu-item span {
+  font-size: 10px;
+  margin-top: 4px;
+  color: var(--text-primary);
+}
+
+.calculator-container.active .menu-item {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.calculator-container.active .emi {
+  transform: translate(-80px, -40px) scale(1);
+}
+
+.calculator-container.active .sip {
+  transform: translate(0, -90px) scale(1);
+}
+
+.calculator-container.active .vat {
+  transform: translate(80px, -40px) scale(1);
+}
+
+.menu-item:hover {
+  background-color: var(--bg-secondary);
+  transform: scale(1.1);
+  color: var(--primary-color);
+}
+
+/* ================ */
 /* RESPONSIVE STYLES */
 /* ================ */
 @media (max-width: 992px) {
@@ -1047,7 +1148,7 @@ footer {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 600px) {
   .logo h1 {
     font-size: 1.2rem;
   }
@@ -1077,109 +1178,8 @@ footer {
   .footer-links {
     justify-content: center;
   }
-}
-/* ================ */
-/* FLOATING CALCULATOR MENU */
-/* ================ */
-.calculator-container {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 80px;
-  height: 80px;
-  z-index: 1000;
-}
 
-.main-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: var(--bg-color);
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  border: 1px solid var(--border-color);
-}
-
-.main-icon img {
-  width: 40px;
-  height: 40px;
-}
-
-.menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  pointer-events: none;
-}
-
-.calculator-container.active .menu {
-  pointer-events: all;
-}
-
-.menu-item {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--bg-color);
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.4s ease;
-  flex-direction: column;
-  text-align: center;
-  text-decoration: none;
-  border: 1px solid var(--border-color);
-}
-
-.menu-item img {
-  width: 28px;
-  height: 28px;
-}
-
-.menu-item span {
-  font-size: 10px;
-  margin-top: 4px;
-  color: var(--text-primary);
-}
-
-.calculator-container.active .menu-item {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.calculator-container.active .emi {
-  transform: translate(-80px, -40px) scale(1);
-}
-
-.calculator-container.active .sip {
-  transform: translate(0, -90px) scale(1);
-}
-
-.calculator-container.active .vat {
-  transform: translate(80px, -40px) scale(1);
-}
-
-.menu-item:hover {
-  background-color: var(--bg-secondary);
-  transform: scale(1.1);
-  color: var(--primary-color);
-}
-
-@media (max-width: 600px) {
+  /* Calculator menu adjustments */
   .calculator-container {
     bottom: 20px;
     right: 20px;
