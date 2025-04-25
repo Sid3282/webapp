@@ -158,7 +158,7 @@
             display: flex;
             gap: 1.2rem;
             align-items: center;
-            list-style: none; /* Remove bullets */
+            list-style: none;
         }
 
         nav li {
@@ -173,16 +173,30 @@
             position: relative;
             display: flex;
             align-items: center;
-            text-decoration: none; /* Remove underline */
+            text-decoration: none;
         }
 
         nav a.active {
             color: var(--primary-color);
         }
 
-        /* Remove hover underline effect */
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
         nav a:hover::after {
-            content: none;
+            width: 100%;
         }
 
         #darkModeToggle {
