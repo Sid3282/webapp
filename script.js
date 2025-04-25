@@ -204,26 +204,7 @@ if (newsletterForm) {
     });
 }
 
-// Initialize all components when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    fetchGoldPrices();
-    fetchForexRates();
-    fetchWeather();
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                    // Floating Calculator Menu
+// Floating Calculator Menu
 const calculatorContainer = document.querySelector('.calculator-container');
 const mainIcon = document.querySelector('.main-icon');
 
@@ -246,6 +227,26 @@ document.querySelectorAll('.menu-item').forEach(item => {
     e.stopPropagation();
   });
 });
+
+// Initialize all components when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    fetchGoldPrices();
+    fetchForexRates();
+    fetchWeather();
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
                 });
             }
         });
