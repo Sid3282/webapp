@@ -158,6 +158,7 @@
             display: flex;
             gap: 1.2rem;
             align-items: center;
+            list-style: none; /* Remove bullets */
         }
 
         nav li {
@@ -172,21 +173,16 @@
             position: relative;
             display: flex;
             align-items: center;
+            text-decoration: none; /* Remove underline */
         }
 
         nav a.active {
             color: var(--primary-color);
         }
 
-        nav a.active::after,
+        /* Remove hover underline effect */
         nav a:hover::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-color);
+            content: none;
         }
 
         #darkModeToggle {
@@ -466,6 +462,11 @@
             font-size: 1.1rem;
         }
 
+        .footer-col ul {
+            list-style: none; /* Remove bullets */
+            padding-left: 0; /* Remove default padding */
+        }
+
         .footer-col ul li {
             margin-bottom: 0.75rem;
         }
@@ -473,11 +474,12 @@
         .footer-col ul a {
             color: var(--text-secondary);
             transition: var(--transition);
+            text-decoration: none; /* Remove underline */
         }
 
         .footer-col ul a:hover {
             color: var(--primary-color);
-            padding-left: 0.25rem;
+            padding-left: 0; /* Remove hover padding effect */
         }
 
         .footer-col p {
@@ -501,6 +503,7 @@
 
         .footer-links a {
             color: var(--text-secondary);
+            text-decoration: none; /* Remove underline */
         }
 
         .footer-links a:hover {
