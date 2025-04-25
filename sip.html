@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator | Hamro Utility</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ================ */
+        /* BASE STYLES */
+        /* ================ */
+        :root {
+            --primary-color: #D32F2F;
+            --primary-dark: #9A0007;
+            --primary-light: #FF6659;
+            --secondary-color: #FFD700;
+            --secondary-dark: #C8A600;
+            --secondary-light: #FFFF6B;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-color: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --border-color: #E0E0E0;
+            --success-color: #388E3C;
+            --error-color: #D32F2F;
+            --warning-color: #FFA000;
+            --info-color: #1976D2;
+            --font-primary: 'Poppins', sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #D32F2F;
+            --primary-dark: #9A0007;
+            --primary-light: #FF6659;
+            --secondary-color: #FFD700;
+            --secondary-dark: #C8A600;
+            --secondary-light: #FFFF6B;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --bg-color: #121212;
+            --bg-secondary: #1E1E1E;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-top: 70px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.4rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* ================ */
+        /* HEADER STYLES */
+        /* ================ */
+        header {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        #darkModeToggle {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 2.3rem;
+            height: 2.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        /* ================ */
+        /* SIP CALCULATOR STYLES */
+        /* ================ */
+        .sip-calculator {
+            padding: 3rem 0;
+        }
+
+        .sip-calculator .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-card, .info-card, .results-card, .register-card {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .input-card h2, .info-card h2, .results-card h2, 
+        .register-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group label i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .input-with-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-with-slider input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .input-with-slider input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .input-with-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .input-with-slider input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-item {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .info-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .info-card p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            margin-top: 1.5rem;
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .bank-card {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .bank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .bank-card img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+
+        .bank-card p {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ================ */
+        /* FOOTER STYLES */
+        /* ================ */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 3rem 0 0;
+            color: var(--text-secondary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            header .container {
+                height: 60px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                box-shadow: var(--shadow-md);
+                padding: 1rem;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .bank-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo p {
+                font-size: 0.6rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1.2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+            
+            .bank-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.ibb.co/GvyW5RXN/utilities-1.png" alt="Hamro Utility Logo" height="40">
+                <div class="logo-text">
+                    <h1>Hamro Utility</h1>
+                    <p>Daily Essentials for Every Nepali</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="emi.html">EMI Calculator</a></li>
+                    <li><a href="vat.html">VAT Calculator</a></li>
+                    <li><a href="sip.html" class="active">SIP Calculator</a></li>
+                </ul>
+            </nav>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="sip-calculator">
+        <div class="container">
+            <h1>SIP Calculator</h1>
+            <p class="subtitle">Plan your investments and estimate potential returns</p>
+            
+            <div class="calculator-grid">
+                <div class="input-section">
+                    <div class="input-card">
+                        <h2>Investment Details</h2>
+                        
+                        <div class="form-group">
+                            <label for="monthly-investment">
+                                <i class="fas fa-rupee-sign"></i> Monthly Investment (NPR)
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="monthly-investment" min="500" step="500" value="5000">
+                                <input type="range" id="monthly-investment-slider" min="500" max="100000" step="500" value="5000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-period">
+                                <i class="fas fa-calendar-alt"></i> Investment Period (Years)
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="investment-period" min="1" max="40" step="1" value="10">
+                                <input type="range" id="investment-period-slider" min="1" max="40" step="1" value="10">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="return-rate">
+                                <i class="fas fa-percent"></i> Expected Return Rate (% p.a.)
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="return-rate" min="1" max="30" step="0.1" value="12">
+                                <input type="range" id="return-rate-slider" min="1" max="30" step="0.1" value="12">
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="calculate-sip" class="btn">Calculate</button>
+                            <button id="reset-calculator" class="btn btn-outline">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h2>What is SIP?</h2>
+                        <p>SIP (Systematic Investment Plan) is a disciplined investment strategy that allows individuals to invest a fixed amount regularly in mutual funds. It helps in building long-term wealth through the power of compounding and rupee cost averaging.</p>
+                        
+                        <h2>Benefits of SIP</h2>
+                        <ul>
+                            <li>Encourages disciplined savings</li>
+                            <li>Power of compounding</li>
+                            <li>Affordable and flexible</li>
+                            <li>Reduces market timing risk</li>
+                            <li>Convenient and automated</li>
+                        </ul>
+                        
+                        <div class="disclaimer">
+                            This calculator is for illustrative purposes only. The actual returns may vary depending on market performance. Please consult a financial advisor before making investment decisions.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-section">
+                    <div class="results-card">
+                        <h2>Projected Returns</h2>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <div class="result-label">Total Invested Amount</div>
+                                <div class="result-value" id="invested-amount">Rs. 600,000</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Estimated Returns</div>
+                                <div class="result-value" id="estimated-returns">Rs. 464,035</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Value</div>
+                                <div class="result-value" id="total-value">Rs. 1,064,035</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container" style="height: 300px; margin: 2rem 0;">
+                            <canvas id="sipChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="register-card">
+                        <h2>Register for SIP</h2>
+                        <p>Start your investment journey with these trusted financial institutions:</p>
+                        
+                        <div class="bank-grid">
+                            <div class="bank-card" onclick="window.open('https://www.nicasia.com.np', '_blank')">
+                                <img src="https://www.nicasia.com.np/wp-content/uploads/2019/09/NIC-Asia-Logo.png" alt="NIC Asia Capital">
+                                <p>NIC Asia Capital</p>
+                            </div>
+                            <div class="bank-card" onclick="window.open('https://www.nimbcapital.com.np', '_blank')">
+                                <img src="https://www.nimbcapital.com.np/wp-content/uploads/2020/06/NIMB-Capital-Logo.png" alt="NIMB Capital">
+                                <p>NIMB Capital</p>
+                            </div>
+                            <div class="bank-card" onclick="window.open('https://www.nmbcapital.com.np', '_blank')">
+                                <img src="https://www.nmbcapital.com.np/wp-content/uploads/2020/06/NMB-Capital-Logo.png" alt="NMB Capital">
+                                <p>NMB Capital</p>
+                            </div>
+                            <div class="bank-card" onclick="window.open('https://www.siddharthacapital.com', '_blank')">
+                                <img src="https://www.siddharthacapital.com/wp-content/uploads/2020/06/Siddhartha-Capital-Logo.png" alt="Siddhartha Capital">
+                                <p>Siddhartha Capital</p>
+                            </div>
+                            <div class="bank-card" onclick="window.open('https://www.nabilinvest.com.np', '_blank')">
+                                <img src="https://www.nabilinvest.com.np/wp-content/uploads/2020/06/Nabil-Invest-Logo.png" alt="Nabil Invest">
+                                <p>Nabil Invest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                    <p class="creator-credit">Created with ❤️ By Siddha Batala</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="emi.html">EMI Calculator</a></li>
+                        <li><a href="vat.html">VAT Calculator</a></li>
+                        <li><a href="sip.html">SIP Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="https://sebon.gov.np" target="_blank">SEBON Nepal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        // SIP Calculator Elements
+        const monthlyInvestmentInput = document.getElementById('monthly-investment');
+        const monthlyInvestmentSlider = document.getElementById('monthly-investment-slider');
+        const investmentPeriodInput = document.getElementById('investment-period');
+        const investmentPeriodSlider = document.getElementById('investment-period-slider');
+        const returnRateInput = document.getElementById('return-rate');
+        const returnRateSlider = document.getElementById('return-rate-slider');
+        const calculateBtn = document.getElementById('calculate-sip');
+        const resetBtn = document.getElementById('reset-calculator');
+        const investedAmountEl = document.getElementById('invested-amount');
+        const estimatedReturnsEl = document.getElementById('estimated-returns');
+        const totalValueEl = document.getElementById('total-value');
+        let sipChart = null;
+
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('click', () => {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            const icon = darkModeToggle.querySelector('i');
+            if (savedTheme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // SIP Calculator Logic
+        function calculateSIP() {
+            const monthlyInvestment = parseFloat(monthlyInvestmentInput.value) || 0;
+            const investmentPeriod = parseFloat(investmentPeriodInput.value) || 0;
+            const returnRate = parseFloat(returnRateInput.value) / 100 || 0;
+            
+            const months = investmentPeriod * 12;
+            const monthlyRate = returnRate / 12;
+            
+            // Calculate future value of SIP
+            const futureValue = monthlyInvestment * 
+                              ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * 
+                              (1 + monthlyRate);
+            
+            const totalInvested = monthlyInvestment * months;
+            const estimatedReturns = futureValue - totalInvested;
+            
+            // Update UI
+            investedAmountEl.textContent = formatCurrency(totalInvested);
+            estimatedReturnsEl.textContent = formatCurrency(estimatedReturns);
+            totalValueEl.textContent = formatCurrency(futureValue);
+            
+            // Update chart
+            updateChart(totalInvested, estimatedReturns);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return 'Rs. ' + amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Initialize chart
+        function initChart() {
+            const ctx = document.getElementById('sipChart').getContext('2d');
+            sipChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Invested Amount', 'Estimated Returns'],
+                    datasets: [{
+                        data: [600000, 464035],
+                        backgroundColor: [
+                            'rgba(211, 47, 47, 0.8)',
+                            'rgba(255, 215, 0, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(211, 47, 47, 1)',
+                            'rgba(255, 215, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: getComputedStyle(document.body).getPropertyValue('--text-primary')
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += 'Rs. ' + context.raw.toLocaleString();
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update chart data
+        function updateChart(invested, returns) {
+            if (sipChart) {
+                sipChart.data.datasets[0].data = [invested, returns];
+                sipChart.update();
+            }
+        }
+
+        // Reset calculator
+        function resetCalculator() {
+            monthlyInvestmentInput.value = '5000';
+            monthlyInvestmentSlider.value = '5000';
+            investmentPeriodInput.value = '10';
+            investmentPeriodSlider.value = '10';
+            returnRateInput.value = '12';
+            returnRateSlider.value = '12';
+            calculateSIP();
+        }
+
+        // Initialize calculator
+        function initCalculator() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Sync inputs with sliders
+            monthlyInvestmentInput.addEventListener('input', () => {
+                monthlyInvestmentSlider.value = monthlyInvestmentInput.value;
+                calculateSIP();
+            });
+            
+            monthlyInvestmentSlider.addEventListener('input', () => {
+                monthlyInvestmentInput.value = monthlyInvestmentSlider.value;
+                calculateSIP();
+            });
+            
+            investmentPeriodInput.addEventListener('input', () => {
+                investmentPeriodSlider.value = investmentPeriodInput.value;
+                calculateSIP();
+            });
+            
+            investmentPeriodSlider.addEventListener('input', () => {
+                investmentPeriodInput.value = investmentPeriodSlider.value;
+                calculateSIP();
+            });
+            
+            returnRateInput.addEventListener('input', () => {
+                returnRateSlider.value = returnRateInput.value;
+                calculateSIP();
+            });
+            
+            returnRateSlider.addEventListener('input', () => {
+                returnRateInput.value = returnRateSlider.value;
+                calculateSIP();
+            });
+            
+            // Action buttons
+            calculateBtn.addEventListener('click', calculateSIP);
+            resetBtn.addEventListener('click', resetCalculator);
+            
+            // Initialize chart
+            initChart();
+            
+            // Calculate initial SIP
+            calculateSIP();
+        }
+
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', initCalculator);
+    </script>
+</body>
+</html>
