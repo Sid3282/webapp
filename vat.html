@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Calculator | Hamro Utility</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ================ */
+        /* BASE STYLES */
+        /* ================ */
+        :root {
+            --primary-color: #D32F2F;
+            --primary-dark: #9A0007;
+            --primary-light: #FF6659;
+            --secondary-color: #FFD700;
+            --secondary-dark: #C8A600;
+            --secondary-light: #FFFF6B;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --bg-color: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --border-color: #E0E0E0;
+            --success-color: #388E3C;
+            --error-color: #D32F2F;
+            --warning-color: #FFA000;
+            --info-color: #1976D2;
+            --font-primary: 'Poppins', sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #D32F2F;
+            --primary-dark: #9A0007;
+            --primary-light: #FF6659;
+            --secondary-color: #FFD700;
+            --secondary-dark: #C8A600;
+            --secondary-light: #FFFF6B;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --bg-color: #121212;
+            --bg-secondary: #1E1E1E;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-top: 70px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.4rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* ================ */
+        /* HEADER STYLES */
+        /* ================ */
+        header {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a.active::after,
+        nav a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        #darkModeToggle {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 2.3rem;
+            height: 2.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        /* ================ */
+        /* VAT CALCULATOR STYLES */
+        /* ================ */
+        .vat-calculator {
+            padding: 3rem 0;
+        }
+
+        .vat-calculator .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-card, .tips-card, .results-card, .comparison-card {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .input-card h2, .tips-card h2, .results-card h2, 
+        .comparison-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group label i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .input-with-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-with-slider input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .input-with-slider input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .input-with-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .input-with-slider input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .toggle-buttons {
+            display: flex;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .toggle-buttons button {
+            flex: 1;
+            padding: 0.5rem;
+            background-color: var(--bg-secondary);
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-buttons button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .tips-card .tip {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tips-card .tip.active {
+            display: block;
+        }
+
+        .tips-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .tips-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tips-card li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .tip-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tip-categories button {
+            padding: 0.5rem 1rem;
+            background-color: var(--bg-secondary);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .tip-categories button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-item {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-plan {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .comparison-plan h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* ================ */
+        /* FOOTER STYLES */
+        /* ================ */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 3rem 0 0;
+            color: var(--text-secondary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary-color);
+            padding-left: 0.25rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            header .container {
+                height: 60px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                box-shadow: var(--shadow-md);
+                padding: 1rem;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo p {
+                font-size: 0.6rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1.2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.ibb.co/GvyW5RXN/utilities-1.png" alt="Hamro Utility Logo" height="40">
+                <div class="logo-text">
+                    <h1>Hamro Utility</h1>
+                    <p>Daily Essentials for Every Nepali</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="emi.html">EMI Calculator</a></li>
+                    <li><a href="vat.html" class="active">VAT Calculator</a></li>
+                    <li><a href="sip.html">SIP Calculator</a></li>
+                </ul>
+            </nav>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="vat-calculator">
+        <div class="container">
+            <h1>VAT Calculator</h1>
+            <p class="subtitle">Calculate VAT amounts for Nepalese businesses and consumers</p>
+            
+            <div class="calculator-grid">
+                <div class="input-section">
+                    <div class="input-card">
+                        <h2>VAT Details</h2>
+                        
+                        <div class="form-group">
+                            <label for="amount">
+                                <i class="fas fa-rupee-sign"></i> Amount (NPR)
+                            </label>
+                            <input type="number" id="amount" min="0" step="1" value="1000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vat-type">
+                                <i class="fas fa-calculator"></i> VAT Calculation Type
+                            </label>
+                            <div class="toggle-buttons">
+                                <button class="active" id="add-vat">Add VAT</button>
+                                <button id="remove-vat">Remove VAT</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vat-rate">
+                                <i class="fas fa-percent"></i> VAT Rate (%)
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="vat-rate" min="0" max="30" step="0.1" value="13">
+                                <input type="range" id="vat-rate-slider" min="0" max="30" step="0.1" value="13">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">
+                                <i class="fas fa-tags"></i> Category (Optional)
+                            </label>
+                            <select id="category">
+                                <option value="standard">Standard (13%)</option>
+                                <option value="exempt">VAT Exempt (0%)</option>
+                                <option value="zero-rated">Zero Rated (0%)</option>
+                                <option value="other">Other (Custom Rate)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="tips-card">
+                        <h2>VAT Tips for Nepal <i class="fas fa-lightbulb"></i></h2>
+                        <div class="tip active" data-category="general">
+                            <h3>General VAT Information</h3>
+                            <ul>
+                                <li>Standard VAT rate in Nepal is 13% (as of 2024)</li>
+                                <li>Businesses with turnover over Rs. 2 million annually must register for VAT</li>
+                                <li>Always mention VAT registration number on invoices</li>
+                            </ul>
+                        </div>
+                        <div class="tip" data-category="exemptions">
+                            <h3>VAT Exemptions in Nepal</h3>
+                            <ul>
+                                <li>Basic food items (rice, lentils, vegetables)</li>
+                                <li>Educational books and materials</li>
+                                <li>Medicines and medical equipment</li>
+                                <li>Agricultural inputs (fertilizers, seeds)</li>
+                            </ul>
+                        </div>
+                        <div class="tip" data-category="business">
+                            <h3>For Businesses</h3>
+                            <ul>
+                                <li>VAT returns must be filed monthly by the 25th of following month</li>
+                                <li>Maintain proper VAT invoices for all transactions</li>
+                                <li>Keep records for at least 6 years as per IRD requirements</li>
+                            </ul>
+                        </div>
+                        <div class="tip-categories">
+                            <button class="active" data-category="general">General</button>
+                            <button data-category="exemptions">Exemptions</button>
+                            <button data-category="business">Business</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-section">
+                    <div class="results-card">
+                        <h2>VAT Calculation Results</h2>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <div class="result-label">Original Amount</div>
+                                <div class="result-value" id="original-amount">Rs. 1,000</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">VAT Amount</div>
+                                <div class="result-value" id="vat-amount">Rs. 130</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Net Price (Excl. VAT)</div>
+                                <div class="result-value" id="net-price">Rs. 1,000</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Gross Price (Incl. VAT)</div>
+                                <div class="result-value" id="gross-price">Rs. 1,130</div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="copy-results" class="btn">Copy Results</button>
+                            <button id="compare-vat" class="btn btn-outline">Compare Countries</button>
+                            <button id="reset-calculator" class="btn btn-outline">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-card" style="display: none;">
+                        <h2>VAT Rate Comparison</h2>
+                        <div class="comparison-container">
+                            <div class="comparison-plan">
+                                <h3>Nepal</h3>
+                                <div class="comparison-results">
+                                    <div class="result-item">
+                                        <div class="result-label">Standard Rate</div>
+                                        <div class="result-value">13%</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="result-label">System Type</div>
+                                        <div class="result-value">Standard VAT</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comparison-plan">
+                                <h3 id="comparison-country">India</h3>
+                                <div class="comparison-results">
+                                    <div class="result-item">
+                                        <div class="result-label">Standard Rate</div>
+                                        <div class="result-value">18%</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="result-label">System Type</div>
+                                        <div class="result-value">GST (multi-rate)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country-select">Compare With:</label>
+                            <select id="country-select">
+                                <option value="india">India (GST 5-28%)</option>
+                                <option value="uk">UK (VAT 20%)</option>
+                                <option value="usa">USA (Sales Tax)</option>
+                                <option value="uae">UAE (VAT 5%)</option>
+                            </select>
+                        </div>
+                        <button id="close-comparison" class="btn">Close Comparison</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Hamro Utility</h3>
+                    <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
+                    <p class="creator-credit">Created with ❤️ for Nepal</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="emi.html">EMI Calculator</a></li>
+                        <li><a href="vat.html">VAT Calculator</a></li>
+                        <li><a href="sip.html">SIP Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="https://ird.gov.np" target="_blank">IRD Nepal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Hamro Utility. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        // VAT Calculator Elements
+        const amountInput = document.getElementById('amount');
+        const addVatBtn = document.getElementById('add-vat');
+        const removeVatBtn = document.getElementById('remove-vat');
+        const vatRateInput = document.getElementById('vat-rate');
+        const vatRateSlider = document.getElementById('vat-rate-slider');
+        const categorySelect = document.getElementById('category');
+        const originalAmountEl = document.getElementById('original-amount');
+        const vatAmountEl = document.getElementById('vat-amount');
+        const netPriceEl = document.getElementById('net-price');
+        const grossPriceEl = document.getElementById('gross-price');
+        const copyResultsBtn = document.getElementById('copy-results');
+        const compareVatBtn = document.getElementById('compare-vat');
+        const resetCalculatorBtn = document.getElementById('reset-calculator');
+        const closeComparisonBtn = document.getElementById('close-comparison');
+        const resultsCard = document.querySelector('.results-card');
+        const comparisonCard = document.querySelector('.comparison-card');
+        const countrySelect = document.getElementById('country-select');
+        const comparisonCountryEl = document.getElementById('comparison-country');
+        const tipCategories = document.querySelectorAll('.tip-categories button');
+        const tips = document.querySelectorAll('.tip');
+
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('click', () => {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+            const icon = darkModeToggle.querySelector('i');
+            if (savedTheme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // VAT Calculator Logic
+        function calculateVAT() {
+            const amount = parseFloat(amountInput.value) || 0;
+            const vatRate = parseFloat(vatRateInput.value) / 100;
+            const isAddVAT = addVatBtn.classList.contains('active');
+            
+            let netPrice, grossPrice, vatAmount;
+            
+            if (isAddVAT) {
+                netPrice = amount;
+                vatAmount = netPrice * vatRate;
+                grossPrice = netPrice + vatAmount;
+            } else {
+                grossPrice = amount;
+                netPrice = grossPrice / (1 + vatRate);
+                vatAmount = grossPrice - netPrice;
+            }
+            
+            // Update UI
+            originalAmountEl.textContent = formatCurrency(amount);
+            vatAmountEl.textContent = formatCurrency(vatAmount);
+            netPriceEl.textContent = formatCurrency(netPrice);
+            grossPriceEl.textContent = formatCurrency(grossPrice);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return 'Rs. ' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace(/\.00$/, '');
+        }
+
+        // Copy results to clipboard
+        function copyResults() {
+            const results = `VAT Calculation Results:
+Original Amount: ${originalAmountEl.textContent}
+VAT Amount: ${vatAmountEl.textContent}
+Net Price (Excl. VAT): ${netPriceEl.textContent}
+Gross Price (Incl. VAT): ${grossPriceEl.textContent}`;
+            
+            navigator.clipboard.writeText(results).then(() => {
+                alert('Results copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy results. Please try again.');
+            });
+        }
+
+        // Show comparison
+        function showComparison() {
+            resultsCard.style.display = 'none';
+            comparisonCard.style.display = 'block';
+        }
+
+        // Close comparison
+        function closeComparison() {
+            resultsCard.style.display = 'block';
+            comparisonCard.style.display = 'none';
+        }
+
+        // Reset calculator
+        function resetCalculator() {
+            amountInput.value = '1000';
+            vatRateInput.value = '13';
+            vatRateSlider.value = '13';
+            categorySelect.value = 'standard';
+            addVatBtn.classList.add('active');
+            removeVatBtn.classList.remove('active');
+            calculateVAT();
+        }
+
+        // Update comparison country
+        function updateComparisonCountry() {
+            const country = countrySelect.value;
+            let countryName, rate, system;
+            
+            switch(country) {
+                case 'india':
+                    countryName = 'India';
+                    rate = '18%';
+                    system = 'GST (multi-rate)';
+                    break;
+                case 'uk':
+                    countryName = 'UK';
+                    rate = '20%';
+                    system = 'VAT';
+                    break;
+                case 'usa':
+                    countryName = 'USA';
+                    rate = 'Varies (0-10%)';
+                    system = 'Sales Tax';
+                    break;
+                case 'uae':
+                    countryName = 'UAE';
+                    rate = '5%';
+                    system = 'VAT';
+                    break;
+                default:
+                    countryName = 'India';
+                    rate = '18%';
+                    system = 'GST (multi-rate)';
+            }
+            
+            comparisonCountryEl.textContent = countryName;
+            document.querySelector('.comparison-plan:last-child .result-value:first-child').textContent = rate;
+            document.querySelector('.comparison-plan:last-child .result-value:last-child').textContent = system;
+        }
+
+        // Initialize calculator
+        function initCalculator() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // VAT Calculation Type Toggle
+            addVatBtn.addEventListener('click', () => {
+                addVatBtn.classList.add('active');
+                removeVatBtn.classList.remove('active');
+                calculateVAT();
+            });
+            
+            removeVatBtn.addEventListener('click', () => {
+                removeVatBtn.classList.add('active');
+                addVatBtn.classList.remove('active');
+                calculateVAT();
+            });
+            
+            // Sync inputs with sliders
+            amountInput.addEventListener('input', calculateVAT);
+            vatRateInput.addEventListener('input', () => {
+                vatRateSlider.value = vatRateInput.value;
+                calculateVAT();
+            });
+            
+            vatRateSlider.addEventListener('input', () => {
+                vatRateInput.value = vatRateSlider.value;
+                calculateVAT();
+            });
+            
+            // Category selection
+            categorySelect.addEventListener('change', () => {
+                if (categorySelect.value === 'exempt' || categorySelect.value === 'zero-rated') {
+                    vatRateInput.value = '0';
+                    vatRateSlider.value = '0';
+                } else if (categorySelect.value === 'standard') {
+                    vatRateInput.value = '13';
+                    vatRateSlider.value = '13';
+                }
+                calculateVAT();
+            });
+            
+            // Action buttons
+            copyResultsBtn.addEventListener('click', copyResults);
+            compareVatBtn.addEventListener('click', showComparison);
+            resetCalculatorBtn.addEventListener('click', resetCalculator);
+            closeComparisonBtn.addEventListener('click', closeComparison);
+            
+            // Country comparison
+            countrySelect.addEventListener('change', updateComparisonCountry);
+            
+            // Tip categories
+            tipCategories.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tipCategories.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    tips.forEach(tip => tip.classList.remove('active'));
+                    document.querySelector(`.tip[data-category="${btn.dataset.category}"]`).classList.add('active');
+                });
+            });
+            
+            // Calculate initial VAT
+            calculateVAT();
+        }
+
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', initCalculator);
+    </script>
+</body>
+</html>
