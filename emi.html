@@ -7,9 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ================ */
-        /* BASE STYLES */
-        /* ================ */
         :root {
             --primary-color: #D32F2F;
             --primary-dark: #9A0007;
@@ -104,9 +101,6 @@
             color: white;
         }
 
-        /* ================ */
-        /* HEADER STYLES */
-        /* ================ */
         header {
             background-color: var(--bg-color);
             box-shadow: var(--shadow-sm);
@@ -230,9 +224,6 @@
             background-color: var(--bg-secondary);
         }
 
-        /* ================ */
-        /* EMI CALCULATOR STYLES */
-        /* ================ */
         .emi-calculator {
             padding: 3rem 0;
         }
@@ -458,9 +449,37 @@
             border-radius: var(--radius-sm);
         }
 
-        /* ================ */
-        /* FOOTER STYLES */
-        /* ================ */
+        .chart-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .pie-chart-container {
+            height: 250px;
+            position: relative;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+
         footer {
             background-color: var(--bg-secondary);
             padding: 3rem 0 0;
@@ -527,7 +546,6 @@
             color: var(--primary-color);
         }
 
-        /* Responsive Styles */
         @media (max-width: 992px) {
             .calculator-grid {
                 grid-template-columns: 1fr;
@@ -581,6 +599,10 @@
             .amortization-table th, 
             .amortization-table td {
                 padding: 0.5rem;
+            }
+            
+            .chart-container {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -745,8 +767,25 @@
                                 <div class="result-value" id="total-payment">Rs. 637,411</div>
                             </div>
                         </div>
-                        
-                        <h3 style="margin-top: 2rem; color: var(--primary-color);">Payment Schedule</h3>
+
+                        <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Payment Breakdown</h3>
+                        <div class="chart-container">
+                            <div class="pie-chart-container">
+                                <canvas id="pieChart"></canvas>
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #D32F2F;"></div>
+                                    <span>Principal Amount</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #FFD700;"></div>
+                                    <span>Total Interest</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Payment Schedule</h3>
                         <div class="table-container">
                             <table class="amortization-table">
                                 <thead>
@@ -815,7 +854,7 @@
                 <div class="footer-col">
                     <h3>Hamro Utility</h3>
                     <p>Daily essentials for every Nepali. Simple, fast, and reliable tools for your everyday needs.</p>
-                    <p class="creator-credit">Created with ❤️ By Siddha Batala</p>
+                    <p class="creator-credit">Created with ❤️ for Nepal</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
@@ -846,6 +885,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // DOM Elements
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -911,6 +951,59 @@
             });
         });
 
+        // Initialize pie chart
+        let pieChart;
+        function initPieChart() {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Principal Amount', 'Total Interest'],
+                    datasets: [{
+                        data: [500000, 137411],
+                        backgroundColor: [
+                            'rgba(211, 47, 47, 0.8)',
+                            'rgba(255, 215, 0, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(211, 47, 47, 1)',
+                            'rgba(255, 215, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += 'Rs. ' + context.raw.toLocaleString();
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update pie chart data
+        function updatePieChart(principal, totalInterest) {
+            if (pieChart) {
+                pieChart.data.datasets[0].data = [principal, totalInterest];
+                pieChart.update();
+            }
+        }
+
         // Calculate EMI
         function calculateEMI() {
             const principal = parseFloat(loanAmountInput.value) || 0;
@@ -934,12 +1027,19 @@
             
             // Generate amortization schedule
             generateAmortizationSchedule(principal, monthlyRate, months, emi);
+            
+            // Update pie chart
+            updatePieChart(principal, totalInterest);
         }
 
         // Generate amortization schedule
         function generateAmortizationSchedule(principal, monthlyRate, months, emi) {
             let balance = principal;
             let html = '';
+            
+            // Show only first 12 months and last 3 months
+            const displayMonths = 12;
+            const lastMonths = 3;
             
             for (let i = 1; i <= months; i++) {
                 const interest = balance * monthlyRate;
@@ -951,14 +1051,28 @@
                     balance = 0;
                 }
                 
-                html += `
-                    <tr>
-                        <td>${i}</td>
-                        <td>${formatCurrency(principalPayment)}</td>
-                        <td>${formatCurrency(interest)}</td>
-                        <td>${formatCurrency(Math.max(0, balance))}</td>
-                    </tr>
-                `;
+                // Only display certain months to keep table manageable
+                if (i <= displayMonths || i > months - lastMonths || i % 12 === 0) {
+                    html += `
+                        <tr>
+                            <td>${i}</td>
+                            <td>${formatCurrency(principalPayment)}</td>
+                            <td>${formatCurrency(interest)}</td>
+                            <td>${formatCurrency(Math.max(0, balance))}</td>
+                        </tr>
+                    `;
+                    
+                    // Add ellipsis row after first 12 months
+                    if (i === displayMonths && months > displayMonths + lastMonths) {
+                        html += `
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: var(--text-secondary);">
+                                    ··· ${months - displayMonths - lastMonths} months hidden ···
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
             }
             
             amortizationBody.innerHTML = html;
@@ -1003,11 +1117,14 @@
             const tableRows = amortizationBody.querySelectorAll('tr');
             tableRows.forEach(row => {
                 const cells = row.querySelectorAll('td');
-                const rowData = [];
-                cells.forEach(cell => {
-                    rowData.push(cell.textContent.replace('Rs. ', '').replace(/,/g, ''));
-                });
-                rows.push(rowData.join(','));
+                // Skip the ellipsis row
+                if (cells.length === 4) {
+                    const rowData = [];
+                    cells.forEach(cell => {
+                        rowData.push(cell.textContent.replace('Rs. ', '').replace(/,/g, ''));
+                    });
+                    rows.push(rowData.join(','));
+                }
             });
             
             const csvContent = rows.join('\n');
@@ -1103,6 +1220,9 @@
             resetBtn.addEventListener('click', resetCalculator);
             printResultsBtn.addEventListener('click', printResults);
             downloadScheduleBtn.addEventListener('click', downloadSchedule);
+            
+            // Initialize pie chart
+            initPieChart();
             
             // Calculate initial EMI
             calculateEMI();
