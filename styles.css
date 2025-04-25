@@ -1178,8 +1178,8 @@ footer {
   .footer-links {
     justify-content: center;
   }
-
-  /* Calculator menu adjustments */
+  
+  /* Calculator menu adjustments for mobile */
   .calculator-container {
     bottom: 20px;
     right: 20px;
